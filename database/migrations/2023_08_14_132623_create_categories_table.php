@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascasdeOnDelete();
+            $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('title');
-            $table->string('thumbnail')->nullable();
-            $table->text('excerpt');
-            $table->text('body');
             $table->timestamps();
-            $table->timestamp('published_at')->nullable();
+        });
+
+        Schema::table('posts', function (Blueprint $table){
+            $table->foreignId('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('categories');
     }
 };
