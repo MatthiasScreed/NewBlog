@@ -27,6 +27,8 @@ Route::get('posts/{post}', function ($id){
     ]);
 });
 
+Route::resource('posts', 'App\Http\Controllers\PostController');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
