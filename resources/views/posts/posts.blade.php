@@ -13,11 +13,11 @@
             </div>
 
             <!-- categeorie -->
-            <div class="hidden lg:block">
-                <a href=""><span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">Design</span></a>
-                <a href=""><span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">Dev</span></a>
-                <a href=""><span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">Illustration</span></a>
-                <a href=""><span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">Web3</span></a>
+            <div class="hidden md:block">
+                @foreach($categories as $category)
+                    <x-front.pastille-category title="{{ $category->name }}"/>
+                @endforeach
+
 
                 <div class="mt-12">
                     <h2 class="mb-8 text-4xl font-bold leading-tight">Popular Post</h2>
@@ -55,18 +55,23 @@
                 </div>
             </div>
         </aside>
-        @foreach($posts as $post)
-            <article>
-                <h1>
-                    <a href="/posts/{{ $post->id }}">
-                        {{ $post->title }}
-                    </a>
-                </h1>
-
-                <div>
-                    {{ $post->excerpt }}
-                </div>
-            </article>
-        @endforeach
+        <main class="pt-4 sm:px-8 lg:pt-8 lg:w-3/5">
+            <div class="flex flex-col items-center justify-between mb-8 space-y-4 md:space-y-0 md:flex-row">
+                <h2 class="text-4xl font-bold leading-tight">Lastest Post</h2>
+                <form action="" method="get" class="">
+                    <input type="text" class="p-3 mr-1 rounded-lg focus:ring-0 focus:border-blue-500" placeholder="Search">
+                    <button class="px-4 py-3 text-white rounded-lg bg-slate-600">submit</button>
+                </form>
+            </div>
+            <div class="flex flex-col mb-8 space-y-8">
+                @foreach($posts as $post)
+                    <x-front.card-home url="/posts/{{ $post->id }}"
+                                       category-name="{{ $post->category->name }}"
+                                       post-title="{{ $post->title }}"
+                                       author-name="{{ $post->author->name }}"
+                                       post-date="{{ $post->created_at->diffForHumans() }}"/>
+                @endforeach
+            </div>
+        </main>
     </div>
 </x-front.layout>

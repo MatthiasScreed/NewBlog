@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -17,17 +18,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('posts.posts', [
-        'posts' => Post::all()
+        'posts' => Post::all(),
+        'categories' => \App\Models\Category::all()
     ]);
 });
 
-Route::get('posts/{post}', function ($id){
-    return view('posts.post', [
-        'post' => Post::findorFail($id)
-    ]);
-});
+//Route::get('posts/{post}', function ($id){
+//    return view('posts.post', [
+//        'post' => Post::findorFail($id)
+//    ]);
+//});
 
-Route::resource('posts', 'App\Http\Controllers\PostController');
+Route::resource('posts', PostController::class, ['as' => 'prefix']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

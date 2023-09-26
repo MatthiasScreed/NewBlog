@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
+use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -20,7 +26,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('posts.backend.create' , ['categories' => $categories]);
     }
 
     /**
@@ -28,15 +35,17 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        Post::create(array_merge($request->validated(),[
+            'user_id' => auth()->user()->id,
+        ]));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+        return view('posts.post',['post' => $post]);
     }
 
     /**
@@ -44,7 +53,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories = Category::all();
+        return view('posts.backend.edit' , ['categories' => $categories]);
     }
 
     /**
