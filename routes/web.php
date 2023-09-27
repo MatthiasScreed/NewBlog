@@ -17,17 +17,37 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    $posts = Post::latest();
+
+    if(request('search')) {
+        $posts->where('title', 'like', '%' . request('search'). '%')
+            ->orWhere('body', 'like', '%'. request('search'). '%' );
+    }
+
     return view('posts.posts', [
-        'posts' => Post::all(),
+        'posts' => $posts->get(),
         'categories' => \App\Models\Category::all()
     ]);
 });
 
-//Route::get('posts/{post}', function ($id){
-//    return view('posts.post', [
-//        'post' => Post::findorFail($id)
-//    ]);
-//});
+Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
+    return view('posts.posts',[
+        'posts' => $category->posts,
+        'currentCategory' => $category,
+        'categories' => Category::all()
+    ]);
+})->name('category');
+
+Route::get('authors/{author:username}', function (\App\Models\User $author) {
+    return view('posts.posts',[
+        'posts' => $author->posts,
+        'categories' => Category::all()
+    ]);
+})->name('category');
+
+
+
 
 Route::resource('posts', PostController::class, ['as' => 'prefix']);
 

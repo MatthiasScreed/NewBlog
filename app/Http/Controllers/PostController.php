@@ -18,7 +18,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return view('posts.posts', [
+            'posts' => Post::latest()->filter()->get(),
+            'categories' => \App\Models\Category::all(),
+            'currentCategory' => Category::firstWhere('slug', request('category'))
+        ]);
     }
 
     /**
@@ -51,10 +55,10 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('posts.backend.edit' , ['categories' => $categories]);
+        return view('posts.backend.edit' , ['categories' => $categories, 'post' => $post]);
     }
 
     /**
@@ -72,4 +76,5 @@ class PostController extends Controller
     {
         //
     }
+
 }

@@ -24,32 +24,10 @@
 
                     <!--Card-->
                     <div class="space-y-4">
-                        <x-front.min-card image="/public/img/thomas-mahon-hex-tutorial.jpg" image_alt="thomas-mahon-hex-tutorial.jpg" title="Article_Title"/>
-
-                        <div class="flex bg-white rounded-lg shadow-md hover:shadow-lg">
-                            <div class="w-1/2">
-                                <img src="/public/img/thomas-mahon-hex-tutorial.jpg" alt="" class="w-full object-cover rounded-l-lg">
-                            </div>
-                            <div class="w-1/2 px-2 p-4">
-                                <h3 class="mb-2 text-2xl font-bold">Article_Title</h3>
-                            </div>
-                        </div>
-                        <div class="flex bg-white rounded-lg shadow-md hover:shadow-lg">
-                            <div class="w-1/2">
-                                <img src="/public/img/thomas-mahon-hex-tutorial.jpg" alt="" class="w-full object-cover rounded-l-lg">
-                            </div>
-                            <div class="w-1/2 px-2 p-4">
-                                <h3 class="mb-2 text-2xl font-bold">Article_Title</h3>
-                            </div>
-                        </div>
-                        <div class="flex bg-white rounded-lg shadow-md hover:shadow-lg">
-                            <div class="w-1/2">
-                                <img src="/public/img/thomas-mahon-hex-tutorial.jpg" alt="" class="w-full object-cover rounded-l-lg">
-                            </div>
-                            <div class="w-1/2 px-2 p-4">
-                                <h3 class="mb-2 text-2xl font-bold">Article_Title</h3>
-                            </div>
-                        </div>
+                        <x-front.min-card image="img/thomas-mahon-hex-tutorial.jpg" image_alt="thomas-mahon-hex-tutorial.jpg" title="Article_Title"/>
+                        <x-front.min-card image="img/thomas-mahon-hex-tutorial.jpg" image_alt="thomas-mahon-hex-tutorial.jpg" title="Article_Title"/>
+                        <x-front.min-card image="img/thomas-mahon-hex-tutorial.jpg" image_alt="thomas-mahon-hex-tutorial.jpg" title="Article_Title"/>
+                        <x-front.min-card image="img/thomas-mahon-hex-tutorial.jpg" image_alt="thomas-mahon-hex-tutorial.jpg" title="Article_Title"/>
                     </div>
 
                 </div>
@@ -58,8 +36,8 @@
         <main class="pt-4 sm:px-8 lg:pt-8 lg:w-3/5">
             <div class="flex flex-col items-center justify-between mb-8 space-y-4 md:space-y-0 md:flex-row">
                 <h2 class="text-4xl font-bold leading-tight">Lastest Post</h2>
-                <form action="" method="get" class="">
-                    <input type="text" class="p-3 mr-1 rounded-lg focus:ring-0 focus:border-blue-500" placeholder="Search">
+                <form action="#" method="get">
+                    <input type="text" name="search" value="{{ request('search') }}" class="p-3 mr-1 rounded-lg focus:ring-0 focus:border-blue-500" placeholder="Search">
                     <button class="px-4 py-3 text-white rounded-lg bg-slate-600">submit</button>
                 </form>
             </div>
@@ -67,7 +45,9 @@
                 @foreach($posts as $post)
                     <x-front.card-home url="/posts/{{ $post->id }}"
                                        category-name="{{ $post->category->name }}"
+                                       image="/img/thomas-mahon-hex-tutorial.jpg"
                                        post-title="{{ $post->title }}"
+                                       avatar="/img/thomas-mahon-hex-queenfetoos.jpg"
                                        author-name="{{ $post->author->name }}"
                                        post-date="{{ $post->created_at->diffForHumans() }}"/>
                 @endforeach
