@@ -36,21 +36,20 @@
         <main class="pt-4 sm:px-8 lg:pt-8 lg:w-3/5">
             <div class="flex flex-col items-center justify-between mb-8 space-y-4 md:space-y-0 md:flex-row">
                 <h2 class="text-4xl font-bold leading-tight">Lastest Post</h2>
-                <form action="#" method="get">
+                <form action="/?{{ request()->getQueryString() }}" method="GET">
                     <input type="text" name="search" value="{{ request('search') }}" class="p-3 mr-1 rounded-lg focus:ring-0 focus:border-blue-500" placeholder="Search">
                     <button class="px-4 py-3 text-white rounded-lg bg-slate-600">submit</button>
                 </form>
             </div>
             <div class="flex flex-col mb-8 space-y-8">
-                @foreach($posts as $post)
-                    <x-front.card-home url="/posts/{{ $post->id }}"
-                                       category-name="{{ $post->category->name }}"
-                                       image="/img/thomas-mahon-hex-tutorial.jpg"
-                                       post-title="{{ $post->title }}"
-                                       avatar="/img/thomas-mahon-hex-queenfetoos.jpg"
-                                       author-name="{{ $post->author->name }}"
-                                       post-date="{{ $post->created_at->diffForHumans() }}"/>
-                @endforeach
+                @if($posts->count())
+                    <x-front.posts-grid :posts="$posts"/>
+
+                    {{ $posts->links() }}
+                @else
+                    <p class="text-center">No posts yet. Please check back later.</p>
+                @endif
+
             </div>
         </main>
     </div>

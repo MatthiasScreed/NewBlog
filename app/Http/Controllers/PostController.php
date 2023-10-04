@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\MediaStorage;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -39,9 +41,21 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        Post::create(array_merge($request->validated(),[
-            'user_id' => auth()->user()->id,
-        ]));
+        $post = new Post();
+
+        $post->user_id = auth()->user()->id;
+        $post->slug = $request->slug;
+        $post->title = $request->title;
+        if($request->thumbnail) {
+            resolve(MediaStorage::class)->execute($request->thumbnail, $post, 'images/', 1920,1920);
+        }
+        $post->excerpt = Str::words($request->body,100, '(...)');
+        $post->body = $request->body;
+        $post->category_id = $request->category_id;
+        $post->save();
+
+        return back()->with('succes','post register');
+
     }
 
     /**
@@ -75,6 +89,22 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * @param StorePostRequest $request
+     * @param Post $post
+     *
+     * @return void
+     */
+    public function extracted(StorePostRequest $request, Post $post): void
+    {
+        if ($request->hasFile('thumbnail')) {
+            $image           = $request->file('thumbnail');
+            $filename        = $post->title . '.' . $image->getClientOriginalExtension();
+            $path            = $image->storeAs('images/', $filename);
+            $post->thumbnail = $filename;
+        }
     }
 
 }

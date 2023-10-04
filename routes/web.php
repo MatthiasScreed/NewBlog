@@ -26,7 +26,7 @@ Route::get('/', function () {
     }
 
     return view('posts.posts', [
-        'posts' => $posts->get(),
+        'posts' => $posts->paginate(5),
         'categories' => \App\Models\Category::all()
     ]);
 });

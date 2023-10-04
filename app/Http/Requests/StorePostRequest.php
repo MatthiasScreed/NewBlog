@@ -11,7 +11,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,8 +24,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => 'required|min:5|max:255',
             'slug' => ['required', 'max:255','unique:posts,slug'],
-            'excerpt' => 'required|max:500',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category_id' => 'required',
         ];
     }

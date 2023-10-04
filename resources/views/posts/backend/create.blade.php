@@ -9,7 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('prefix.posts.store') }}"
+                    <form
+                          action="{{ route('prefix.posts.store') }}"
                           method="post"
                           enctype="multipart/form-data">
                         @csrf
@@ -22,8 +23,6 @@
                                        value="{{ old('title') }}"
                                        placeholder="Le titre du post"
                                        id="title"
-                                       x-model="title"
-                                       x-on:input="slugGenerator.generateSlug()"
                                        class="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
@@ -70,7 +69,6 @@
                                name="slug"
                                value="{{ old('slug') }}"
                                id="slug"
-                               x-model="slug"
                                class="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
 
                         <div class="sm:col-span-3">
@@ -78,12 +76,15 @@
                             <div class="mt-2">
                                 <select id="category_id" name="category_id" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                     @foreach($categories as $category)
-                                        <option>United States</option>
-                                        <option>Canada</option>
-                                        <option>Mexico</option>
+                                        <option value=" {{ $category->id }}">{{$category->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="mt-6 flex items-center justify-end gap-x-6">
+                            <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+                            <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
                         </div>
 
 
@@ -95,19 +96,20 @@
 
     <x-slot name="scripts">
         <script>
-        Alpine.data('slugGenerator', () => ({
-        title: '',
-        slug: '',
+        document.addEventListener('DOMContentLoaded', function () {
+            function generateSlug(title) {
+                return title.toLowerCase().replace(/\s+/g, '-');
+            }
 
-        $watch: ['title'],
-        generateSlug() {
-        // Utilisez ici une logique pour générer le slug à partir du titre.
-        // Vous pouvez utiliser des fonctions JavaScript pour cela.
+            const titleInput = document.getElementById('title');
+            const slugInput = document.getElementById('slug');
 
-        // Par exemple, vous pouvez convertir le titre en minuscules et remplacer les espaces par des tirets.
-        this.slug = this.title.toLowerCase().replace(/\s+/g, '-');
-        }
-        }));
+            titleInput.addEventListener('input', () => {
+                const title = titleInput.value;
+                const slug = generateSlug(title);
+                slugInput.value = slug;
+            });
+        });
         </script>
     </x-slot>
 </x-app-layout>
