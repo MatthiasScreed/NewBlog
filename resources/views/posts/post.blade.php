@@ -16,9 +16,6 @@
             </div>
             <div>
                 <a href=""><span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">{{ $post->category->name }}</span></a>
-{{--                <a href=""><span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">Dev</span></a>--}}
-{{--                <a href=""><span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">Illustration</span></a>--}}
-{{--                <a href=""><span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">Web3</span></a>--}}
             </div>
         </aside>
         <main>

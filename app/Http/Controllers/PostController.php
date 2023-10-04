@@ -20,8 +20,10 @@ class PostController extends Controller
      */
     public function index()
     {
+        $posts = Post::latest()->filter(request(['search','category','author']))->paginate(5);
+
         return view('posts.posts', [
-            'posts' => Post::latest()->filter()->get(),
+            'posts' => $posts,
             'categories' => \App\Models\Category::all(),
             'currentCategory' => Category::firstWhere('slug', request('category'))
         ]);
@@ -78,7 +80,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
         //
     }
