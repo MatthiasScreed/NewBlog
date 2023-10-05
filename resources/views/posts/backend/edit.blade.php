@@ -9,21 +9,20 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('prefix.posts.store') }}"
+                    <form action="{{ route('prefix.posts.update',$post) }}"
                           method="post"
                           enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
 
                         <div>
                             <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Titre :</label>
                             <div class="mt-2">
                                 <input type="text"
                                        name="title"
-                                       value="{{ old('title') }}"
+                                       value="{{ $post->title }}"
                                        placeholder="Le titre du post"
                                        id="title"
-                                       x-model="title"
-                                       x-on:input="slugGenerator.generateSlug()"
                                        class="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
@@ -34,7 +33,7 @@
                             </span>
                         @enderror
 
-                        <div>
+                        <div class="mt-4">
                             <label for="body" class="block text-sm font-medium leading-6 text-gray-900">Content :</label>
                             <div class="mt-2">
                                 <textarea name="body"
@@ -42,7 +41,7 @@
                                           cols="30"
                                           rows="10"
                                           placeholder="Le contenu du post"
-                                          class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ old('content') }}</textarea>
+                                          class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{!! $post->body !!}</textarea>
                             </div>
                         </div>
 
@@ -52,11 +51,19 @@
                             </span>
                         @enderror
 
-                        <div>
-                            <label for="thumbnail">Image</label>
-                            <input type="file"
-                                   name="thumbnail"
-                                   id="thumbnail">
+                        <div class="flex space-x-4 items-center mt-4">
+                            <div class="flex flex-col space-y-2">
+                                <label for="thumbnail">Image</label>
+                                <input type="file"
+                                       name="thumbnail"
+                                       id="thumbnail">
+                            </div>
+                            <div>
+                                <img src="{{asset('storage/images/'.$post->thumbnail)}}"
+                                     alt="{{ $post->thumbnail }}"
+                                class="h-16 w-16 ">
+                            </div>
+
                         </div>
 
                         @error('thumbnail')
@@ -65,28 +72,30 @@
                             </span>
                         @enderror
 
-                        <label for="title">Slug :</label>
-                        <input type="text"
+                        <div class="mt-4">
+                            <label for="title">Slug :</label>
+                            <input type="text"
                                name="slug"
-                               value="{{ old('slug') }}"
+                               value="{{ $post->slug }}"
                                id="slug"
-                               x-model="slug"
                                class="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
 
-                        <div class="sm:col-span-3">
+                        <div class="sm:col-span-3 mt-4">
                             <label for="category_id" class="block text-sm font-medium leading-6 text-gray-900">Category</label>
                             <div class="mt-2">
                                 <select id="category_id" name="category_id" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                     @foreach($categories as $category)
-                                        <option>United States</option>
-                                        <option>Canada</option>
-                                        <option>Mexico</option>
+                                        <option value="{{ $category->id }}" >{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
 
-
+                        <div class="mt-6 flex items-center justify-end gap-x-6">
+                            <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+                            <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -95,19 +104,20 @@
 
     <x-slot name="scripts">
         <script>
-        Alpine.data('slugGenerator', () => ({
-        title: '',
-        slug: '',
+            document.addEventListener('DOMContentLoaded', function () {
+                function generateSlug(title) {
+                    return title.toLowerCase().replace(/\s+/g, '-');
+                }
 
-        $watch: ['title'],
-        generateSlug() {
-        // Utilisez ici une logique pour générer le slug à partir du titre.
-        // Vous pouvez utiliser des fonctions JavaScript pour cela.
+                const titleInput = document.getElementById('title');
+                const slugInput = document.getElementById('slug');
 
-        // Par exemple, vous pouvez convertir le titre en minuscules et remplacer les espaces par des tirets.
-        this.slug = this.title.toLowerCase().replace(/\s+/g, '-');
-        }
-        }));
+                titleInput.addEventListener('input', () => {
+                    const title = titleInput.value;
+                    const slug = generateSlug(title);
+                    slugInput.value = slug;
+                });
+            });
         </script>
     </x-slot>
 </x-app-layout>

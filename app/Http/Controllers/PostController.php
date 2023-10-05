@@ -7,6 +7,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -56,7 +57,7 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
         $post->save();
 
-        return back()->with('succes','post register');
+        return back()->with('success','post register');
 
     }
 
@@ -80,17 +81,42 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        //
+
+//        dd(Storage::get('public/images/'.$post->thumbnail));
+
+        if ($request->thumbnail) {
+            if(Storage::exists('public/images/'.$post->thumbnail)) {
+                Storage::delete('public/images/'.$post->thumbnail);
+            }
+        }
+
+        $post->update([
+           'slug' => $request->slug,
+            'title' => $request->title,
+            'excerpt' => Str::words($request->body,100, '(...)'),
+            'body' => $request->body,
+        ]);
+        resolve(MediaStorage::class)->execute($request->thumbnail, $post, 'images/', 1853,1015);
+
+        $post->save();
+
+        return redirect('/');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        if(Storage::exists('public/images/'.$post->thumbnail)) {
+            Storage::delete('public/images/'.$post->thumbnail);
+        }
+
+        $post->delete();
+
+        return redirect('/');
     }
 
     /**

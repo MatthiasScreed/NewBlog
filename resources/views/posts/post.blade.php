@@ -1,5 +1,5 @@
 <x-front.layout>
-    <div class="flex flex-col-reverse items-center p-4 space-y-4 divide-y-2 divide-slate-200 lg:max-w-7xl lg:mx-auto">
+    <div class="flex flex-col-reverse p-4 space-y-4 divide-y-2 divide-slate-200 lg:max-w-7xl lg:mx-auto">
         <aside>
             <div>
                 <h1 class="mt-0 mb-6 text-5xl font-bold leading-tight">{{ $post->title }}</h1>
@@ -10,9 +10,9 @@
                     <span>.</span>
                     <p class="text-lg text-slate-500">{{ $post->created_at->diffForHumans() }}</p>
                 </div>
-                <p>
-                    Article text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, dignissimos! Perspiciatis dolores minima cum molestiae id labore ipsum atque, eum suscipit provident, eius laudantium esse rem aliquid minus impedit exercitationem.
-                </p>
+                <div>
+                    {!! $post->body !!}
+                </div>
             </div>
             <div>
                 <a href=""><span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">{{ $post->category->name }}</span></a>

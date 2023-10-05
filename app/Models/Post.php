@@ -11,6 +11,8 @@ class Post extends Model
 
     protected $with = ['category', 'author'];
 
+    protected $guarded = [];
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, fn($query, $search) =>
