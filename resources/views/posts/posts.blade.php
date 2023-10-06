@@ -15,7 +15,7 @@
             <!-- categeorie -->
             <div class="hidden md:block">
                 @foreach($categories as $category)
-                    <x-front.pastille-category title="{{ $category->name }}"/>
+                    <x-front.pastille-category url="/?category={{ $category->name }}"  title="{{ $category->name }}"/>
                 @endforeach
 
 

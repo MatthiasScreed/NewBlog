@@ -15,8 +15,27 @@
                 </div>
             </div>
             <div>
-                <a href=""><span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">{{ $post->category->name }}</span></a>
+                <a href="/?category={{ $post->category->name }}"><span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">{{ $post->category->name }}</span></a>
             </div>
+            <section class="mt-10 space-y-6">
+                <form action="POST" action="#" class="border border-gray-200 p-6 rounded-xl">
+                    @csrf
+
+                    <header class="flex items-center">
+                        <img src="https://i.pravatar.cc/60?u={{ auth()->id() }}"
+                             alt=""
+                             width="40"
+                             height="40"
+                             class="rounded-full">
+                        <h2>Want to participate ?</h2>
+                    </header>
+
+                </form>
+
+                @foreach($post->comments as $comment)
+                    <x-front.comment :comment="$comment"/>
+                @endforeach
+            </section>
         </aside>
         <main>
             <div class="flex flex-col mb-8 space-y-8">
