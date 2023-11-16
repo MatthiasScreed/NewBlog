@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascasdeOnDelete();
+            $table->foreignId('user_id')->references('id')->on('users')->constrained()->cascasdeOnDelete();
             $table->string('slug')->unique();
             $table->string('title');
             $table->string('thumbnail')->nullable();

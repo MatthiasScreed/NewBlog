@@ -38,7 +38,7 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('prefix.posts.create')">
+                        <x-dropdown-link :href="route('admin.posts.create')">
                             Create post
                         </x-dropdown-link>
 
@@ -88,7 +88,7 @@
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('prefix.posts.create')">
+                <x-responsive-nav-link :href="route('admin.posts.create')">
                     Create post
                 </x-responsive-nav-link>
 

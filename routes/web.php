@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
+use App\Services\Newsletters;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,20 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
 
-    $posts = Post::latest();
 
-    if(request('search')) {
-        $posts->where('title', 'like', '%' . request('search'). '%')
-            ->orWhere('body', 'like', '%'. request('search'). '%' );
-    }
+Route::get('/', [PostController::class, 'index'])->name('home');
 
-    return view('posts.posts', [
-        'posts' => $posts->paginate(5),
-        'categories' => \App\Models\Category::all()
-    ]);
-});
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
+
+Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
 Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
     return view('posts.posts',[
@@ -44,12 +40,16 @@ Route::get('authors/{author:username}', function (\App\Models\User $author) {
         'posts' => $author->posts,
         'categories' => Category::all()
     ]);
-})->name('category');
+})->name('authors');
+
+Route::post('posts/{post:slug}/comment', [PostCommentsController::class, 'store']);
 
 
 
 
-Route::resource('posts', PostController::class, ['as' => 'prefix']);
+//Route::resource('posts', PostController::class, ['as' => 'prefix']);
+
+Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin')->name('admin.posts.create');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -60,5 +60,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/newsletter', NewsletterController::class);
 
 require __DIR__.'/auth.php';
