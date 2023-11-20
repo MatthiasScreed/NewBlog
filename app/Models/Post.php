@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -43,4 +44,16 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getBodyHtmlAttribute($value)
+    {
+        return $this->body ? Markdown::convertToHtml(e($this->body)) : NULL;
+    }
+
+    public function scopePopular($query)
+    {
+        return $query->orderBy('view_count', 'desc');
+    }
+
+
 }

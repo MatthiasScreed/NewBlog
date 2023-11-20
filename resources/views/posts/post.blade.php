@@ -11,7 +11,7 @@
                     <p class="text-lg text-slate-500">{{ $post->created_at->diffForHumans() }}</p>
                 </div>
                 <div>
-                    {!! $post->body !!}
+                    {!! $post->body_html !!}
                 </div>
             </div>
             <div>

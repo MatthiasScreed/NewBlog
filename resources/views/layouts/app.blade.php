@@ -26,7 +26,9 @@
                     </div>
                 </header>
             @endif
+            <aside>
 
+            </aside>
             <!-- Page Content -->
             <main>
                 {{ $slot }}

@@ -88,6 +88,7 @@
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
+                @admin
                 <x-responsive-nav-link :href="route('admin.posts.create')">
                     Create post
                 </x-responsive-nav-link>

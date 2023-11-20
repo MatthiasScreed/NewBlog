@@ -24,10 +24,9 @@
 
                     <!--Card-->
                     <div class="space-y-4">
-                        <x-front.min-card image="img/thomas-mahon-hex-tutorial.jpg" image_alt="thomas-mahon-hex-tutorial.jpg" title="Article_Title"/>
-                        <x-front.min-card image="img/thomas-mahon-hex-tutorial.jpg" image_alt="thomas-mahon-hex-tutorial.jpg" title="Article_Title"/>
-                        <x-front.min-card image="img/thomas-mahon-hex-tutorial.jpg" image_alt="thomas-mahon-hex-tutorial.jpg" title="Article_Title"/>
-                        <x-front.min-card image="img/thomas-mahon-hex-tutorial.jpg" image_alt="thomas-mahon-hex-tutorial.jpg" title="Article_Title"/>
+                        @foreach($popularPosts as $popPost)
+                            <x-front.min-card url="{{ route('post.show', $popPost->slug) }}" image="img/thomas-mahon-hex-tutorial.jpg" image_alt="thomas-mahon-hex-tutorial.jpg" title="{{  $popPost->title }}"/>
+                        @endforeach
                     </div>
 
                 </div>

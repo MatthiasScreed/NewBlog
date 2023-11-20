@@ -3,7 +3,7 @@
 ])
 
 @foreach($posts as $post)
-    <x-front.card-home url="/posts/{{ $post->id }}"
+    <x-front.card-home url="/posts/{{ $post->slug }}"
                        category-name="{{ $post->category->name }}"
                        image="{{ asset('storage/images/'. $post->thumbnail) }}"
                        post-title="{{ $post->title }}"

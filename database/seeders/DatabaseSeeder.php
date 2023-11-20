@@ -50,6 +50,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-personal-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => rand(1, 10) * 10
         ]);
 
         Post::create([
@@ -59,6 +60,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-family-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => 8
         ]);
 
         Post::create([
@@ -68,6 +70,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-work-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => rand(1, 10) * 10
         ]);
 
         Post::create([
@@ -77,6 +80,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-usual-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => 3
         ]);
 
         Post::create([
@@ -86,6 +90,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-personal-work-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => rand(1, 10) * 10
         ]);
 
         Post::create([
@@ -95,6 +100,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-familly-personnal-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => 2
         ]);
 
         Post::create([
@@ -104,6 +110,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-mive-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => 13
         ]);
 
         Post::create([
@@ -113,6 +120,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-under-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => rand(1, 10) * 10
         ]);
 
         Post::create([
@@ -122,6 +130,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-upper-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => 0
         ]);
 
         Post::create([
@@ -131,6 +140,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-under-and-upper-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => rand(1, 10) * 10
         ]);
 
         Post::create([
@@ -140,6 +150,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-various-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => rand(1, 10) * 10
         ]);
 
         Post::create([
@@ -149,6 +160,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-over-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => 8
         ]);
 
         Post::create([
@@ -158,6 +170,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-final-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => rand(1, 10) * 10
         ]);
 
         Post::create([
@@ -167,6 +180,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-gigly-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => 6
         ]);
 
         Post::create([
@@ -176,6 +190,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-united-post',
             'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula,...',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus sapien ligula, non ullamcorper sem mollis volutpat. Etiam quis justo sodales, rhoncus lectus vitae, egestas lorem. Fusce ultrices nulla lacus, vitae vestibulum nisi lacinia id. Nullam eu volutpat lacus. Nam mollis ligula magna. Praesent dictum tortor et dapibus luctus. Aenean nec risus ligula. Nulla porta nibh sit amet nisi malesuada elementum. Suspendisse elementum felis lacus, sit amet rutrum lectus feugiat vitae. Maecenas tincidunt sagittis mauris, eu vehicula lacus fermentum quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eu imperdiet nibh. In eu ligula at orci facilisis iaculis.',
+            'view_count' => rand(1, 10) * 10
         ]);
 
 
