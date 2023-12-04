@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -27,6 +28,18 @@ class DatabaseSeeder extends Seeder
         Post::truncate();
 
         $user = \App\Models\User::factory()->create();
+
+        $user2 = User::create([
+            'name' => 'Matthias',
+            'email'=> 'christopher.massamba@gmail.com',
+            'password' => bcrypt('Usinator7891@&')
+        ]);
+//        $user2->name('Matthias');
+//        $user2->email('christopher.massamba@gmail.com');
+//        $user2->password(bcrypt('Usinator7891@&'));
+//        $user2->save();
+
+
 
          $personal = Category::create([
              'name' => 'Personal',
@@ -198,7 +211,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call(RolesTableSeeder::class);
+        $this->call(PermissionsTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
     }
 }

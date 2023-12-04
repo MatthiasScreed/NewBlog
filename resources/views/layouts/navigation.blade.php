@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('home') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
@@ -37,11 +37,11 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-
-                        <x-dropdown-link :href="route('admin.posts.create')">
-                            Create post
-                        </x-dropdown-link>
-
+                        @role(['admin', 'editor'])
+                            <x-dropdown-link :href="route('admin.posts.create')">
+                                Create post
+                            </x-dropdown-link>
+                        @endrole
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -88,11 +88,11 @@
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
-                @admin
-                <x-responsive-nav-link :href="route('admin.posts.create')">
-                    Create post
-                </x-responsive-nav-link>
-
+                @role(['admin', 'editor'])
+                    <x-responsive-nav-link :href="route('admin.posts.create')">
+                        Create post
+                    </x-responsive-nav-link>
+                @endrole
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

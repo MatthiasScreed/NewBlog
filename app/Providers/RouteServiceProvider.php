@@ -7,18 +7,10 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    /**
-     * The path to your application's "home" route.
-     *
-     * Typically, users are redirected here after authentication.
-     *
-     * @var string
-     */
-    public const HOME = '/dashboard';
-
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */
@@ -36,5 +28,24 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        $this->getHomePath();
+    }
+
+    /**
+     * Get the home path based on the user's role
+     */
+    public static function getHomePath(): string
+    {
+        if (Auth::check()) {
+            if (Auth::user()->hasRole('admin')) {
+                return 'admin/dashboard';
+            } else {
+                return '/dashboard';
+            }
+        }
+
+        // Par défaut, retournez le chemin du dashboard
+        return '/dashboard';
     }
 }

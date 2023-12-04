@@ -9,5 +9,7 @@
                        post-title="{{ $post->title }}"
                        avatar="/img/thomas-mahon-hex-queenfetoos.jpg"
                        author-name="{{ $post->author->name }}"
-                       post-date="{{ $post->created_at->diffForHumans() }}"/>
+                       post-date="{{ $post->created_at->diffForHumans() }}"
+                       nbre_de_vue="{{ $post->view_count }}"
+                       likes="{{ $post->likes->count() }}"/>
 @endforeach

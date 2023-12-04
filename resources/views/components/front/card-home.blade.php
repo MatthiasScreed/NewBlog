@@ -8,6 +8,8 @@
     'avatar' => null,
     'avatarAlt' => null,
     'authorName',
+    'nbre_de_vue',
+    'likes'
 ])
 
 <div>
@@ -30,9 +32,9 @@
                         </div>
                         <div class="ml-auto text-slate-500">
                             <i class="fa-solid fa-eye"></i>
-                            <span>nbre_de_vue</span>
+                            <span>{{$nbre_de_vue}}</span>
                             <i class="fa-regular fa-heart"></i>
-                            <span>nbre_de_like</span>
+                            <span>{{$likes}}</span>
                         </div>
                     </div>
                 </div>

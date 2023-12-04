@@ -12,7 +12,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "mailchimp/marketing": "*"
+        "mailchimp/marketing": "*",
+        "santigarcor/laratrust": "^8.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -30,7 +31,8 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": ["app/Helpers/permissions.php"]
     },
     "autoload-dev": {
         "psr-4": {

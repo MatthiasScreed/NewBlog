@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminsOnly
+class CheckPermissionsMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,10 @@ class AdminsOnly
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()?->email !== 'christopher.massamba@gmail.com') {
-            abort(Response::HTTP_FORBIDDEN);
-        }
-
+//       dd($request->route()->getActionName());
+        if(!check_user_permissions($request)) {
+           abort(403, "Forbidden access!");
+       }
         return $next($request);
     }
 }
