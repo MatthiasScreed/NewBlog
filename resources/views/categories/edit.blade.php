@@ -54,8 +54,8 @@
                             enctype="multipart/form-data">
                         @csrf
 
-                        <x-form.input name="name" required />
-                        <x-form.input name="slug" required />
+                        <x-form.input name="name"  value="{{ $category->name }}" required />
+                        <x-form.input name="slug"  value="{{ $category->slug }}" required />
 
                         <x-form.button>Publish</x-form.button>
                     </form>
@@ -64,12 +64,13 @@
         </div>
     </div>
 
+{{--    <x-front.flash/>--}}
 
     <x-slot name="scripts">
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 function generateSlug(name) {
-                    return name.toLowerCase().replace(/\s+/g, '-');
+                    return title.toLowerCase().replace(/\s+/g, '-');
                 }
 
                 const nameInput = document.getElementById('name');

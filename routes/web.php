@@ -42,6 +42,7 @@ Route::post('admin/posts/', [\App\Http\Controllers\Backend\PostController::class
 Route::get('admin/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('admin.posts.edit');
 Route::delete('admin/posts/{post:slug}/delete', [PostController::class, 'destroy'])->name('admin.posts.destroy');
 Route::get('admin/categories/', [\App\Http\Controllers\Backend\CategoryController::class, 'index'])->name('admin.category.index');
+Route::post('admin/categories/', [\App\Http\Controllers\Backend\CategoryController::class, 'store'])->name('admin.category.store');
 Route::get('admin/users/', [\App\Http\Controllers\Backend\UserController::class, 'index'])->name('admin.user.index');
 
 Route::get('/dashboard', function () {

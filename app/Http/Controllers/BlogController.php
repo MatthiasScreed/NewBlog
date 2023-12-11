@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class BlogController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @return View
      */
     public function index()
     {
@@ -19,35 +21,41 @@ class BlogController extends Controller
         ]);
     }
 
-    public function about()
+    /**
+     * @return View
+     */
+    public function about():View
     {
         return view('about');
     }
 
     /**
-     * Display the specified resource.
+     * @param Post $post
+     *
+     * @return View
      */
-    public function show(Post $post)
+    public function show(Post $post):View
     {
         $viewCount = $post->view_count + 1;
         $post->update(['view_count' => $viewCount]);
         return view('posts.post',['post' => $post]);
     }
 
-    public function like(Post $post)
+    /***
+     * @param Post $post
+     *
+     * @return JsonResponse
+     */
+    public function like(Post $post):JsonResponse
     {
         $user = auth()->user();
-        $liked = $post->isLikedBy($user);
+        $post->toggleLike($user);
 
-        if ($liked) {
-            $post->dislike($user);
-            $message = 'Like retracted.';
-        } else {
-            $post->like($user);
-            $message = 'Thanks!';
-        }
+        $likesCount = $post->likes()->where('liked', true)->count();
 
-        return response()->json(['message' => $message, 'likesCount' => $post->likes()->count()]);
+        $message = $post->isLikedBy($user) ? 'Thanks!' : 'Like retracted.';
+
+        return response()->json(['message' => $message, 'likesCount' => $likesCount]);
     }
 
 }

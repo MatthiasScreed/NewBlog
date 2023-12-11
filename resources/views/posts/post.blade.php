@@ -13,17 +13,17 @@
                         <div class="ml-auto flex items-center justify-center">
                             @guest
                                 <button>
-                                    <i class="fa-solid fa-heart {{ $post->isLikedBy(auth()->user()) ? 'bg-blue-500' : 'blue-gray-500' }}"></i>
+                                    <i class="fa-solid fa-heart text-gray-500"></i>
                                 </button>
-                                <span class="text-xs text-gray-500" id="like-count">{{ $post->likes()->count() }}</span>
+                                <span class="text-xs text-gray-500" id="like-count">{{ $post->likes()->where('liked', true)->count() }}</span>
                             @else
                                 @php
                                     $isLikedByCurrentUser = optional(auth()->user())->id ? $post->isLikedBy(auth()->user()) : false;
                                 @endphp
-                                <button x-data="{ liked: {{ $isLikedByCurrentUser ? 'true' : 'false' }} }" x-on:click="toggleLike({{ $post->id }}, liked)">
-                                    <i class="fa-solid fa-heart" x-bind:class="{ 'bg-blue-500': liked, 'blue-gray-500': !liked }"></i>
+                                <button x-data="{ liked: {{ $isLikedByCurrentUser ? 'true' : 'false' }} }" x-on:click.prevent="toggleLike({{ $post->id }}, liked)">
+                                    <i class="fa-solid fa-heart" x-bind:class="{ 'text-blue-500': liked, 'text-gray-500': !liked }"></i>
                                 </button>
-                                <span class="ml-2 text-xs text-gray-500" id="like-count">{{ $post->likes()->count() }}</span>
+                                <span class="ml-2 text-xs text-gray-500" id="like-count">{{ $post->likes()->where('liked', true)->count() }}</span>
                             @endguest
                         </div>
 
@@ -34,7 +34,8 @@
             </div>
             <div>
                 <a href="/?category={{ $post->category->name }}">
-                    <span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">{{ $post->category->name }}</span></a>
+                    <span class="inline-flex items-center px-2 py-1 text-xs text-gray-600 bg-gray-200 border-gray-500 rounded-full">{{ $post->category->name }}</span>
+                </a>
             </div>
             <section class="mt-10 space-y-6">
                @include('posts._add-comment-form')
@@ -56,17 +57,16 @@
 
     <x-slot name="scripts">
         <script>
-            function toggleLike(postId, liked) {
-                axios.post(`/posts/${postId}/like`, {
-                    liked: liked,
-                }).then(response => {
+            async function toggleLike(postId, liked) {
+                try {
+                    const response = await axios.post(`/posts/${postId}/like`, { liked });
                     // Assuming you want to update the like count or perform other actions on success
                     console.log(response.data.message);
                     // You may update the like count or other UI elements here
                     document.getElementById('like-count').innerText = response.data.likesCount;
-                }).catch(error => {
+                } catch (error) {
                     console.error('Erreur lors de la requête Ajax :', error);
-                });
+                }
             }
         </script>
     </x-slot>
