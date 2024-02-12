@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Hash;
 use Laratrust\Contracts\LaratrustUser;
 use Laratrust\Traits\HasRolesAndPermissions;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -47,7 +49,7 @@ class User extends Authenticatable implements LaratrustUser
 
     public function posts()
     {
-        return $this->hasMany(Ppost::class, 'author_id');
+        return $this->hasMany(Post::class);
     }
 
     public function gravatar()
@@ -71,6 +73,15 @@ class User extends Authenticatable implements LaratrustUser
 
     public function setPasswordAttribute($value)
     {
-        if (! empty($value)) $this->attributes['password'] = crypt($value, '');
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function getRedirectRoute()
+    {
+        if($this->hasRole(['superadministrator', 'administrator'])){
+            return 'admin/dashboard';
+        }elseif ($this->hasRole('user')){
+            return 'dashboard';
+        }
     }
 }

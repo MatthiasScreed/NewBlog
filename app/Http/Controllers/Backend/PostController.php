@@ -26,7 +26,7 @@ class PostController extends BackendController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
         $post = new Post();
 
@@ -34,15 +34,18 @@ class PostController extends BackendController
         $post->slug = $request->slug;
         $post->title = $request->title;
         if($request->thumbnail) {
-            resolve(MediaStorage::class)->execute($request->thumbnail, $post, 'images/', 1920,1920);
+            resolve(MediaStorage::class)->execute($request->thumbnail, $post, 'images/');
         }
         $post->excerpt = Str::words($request->body,100, '(...)');
         $post->body = $request->body;
         $post->category_id = $request->category_id;
+
+        if($request->published_at) {
+            $post->published_at = date('Y-m-d', strtotime($request->published_at));
+        }
         $post->save();
 
-        return back()->with('success','post register');
-
+        return redirect()->route('admin.dashboard')->with('success','post Register');
     }
 
     /**
@@ -57,7 +60,7 @@ class PostController extends BackendController
     /**
      * Update the specified resource in storage.
      */
-    public function update(StorePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
 
         if ($request->thumbnail) {
@@ -71,12 +74,15 @@ class PostController extends BackendController
             'title' => $request->title,
             'excerpt' => Str::words($request->body,100, '(...)'),
             'body' => $request->body,
+            'published_at' => date('Y-m-d', strtotime($request->published_at)),
         ]);
-        resolve(MediaStorage::class)->execute($request->thumbnail, $post, 'images/', 1853,1015);
+        if ($request->thumbnail) {
+            resolve(MediaStorage::class)->execute($request->thumbnail, $post, 'images/');
+        }
 
         $post->save();
 
-        return redirect('/');
+        return redirect()->route('admin.dashboard')->with('success','post Updater');
     }
 
     /**
@@ -87,7 +93,7 @@ class PostController extends BackendController
 
         $post->delete();
 
-        return redirect('/');
+        return redirect('admin.dashboard')->with('trash-message', ['post move to trash', $post->slug]);
     }
 
     public function forceDestroy(Post $post)
@@ -95,9 +101,10 @@ class PostController extends BackendController
         if(Storage::exists('public/images/'.$post->thumbnail)) {
             Storage::delete('public/images/'.$post->thumbnail);
         }
+
         $post->forceDelete();
 
-        return redirect('/');
+        return redirect('/backend/blog?status=trash')->with('message', 'Your post has been deleted successfully');
     }
 
     public function restore($id)

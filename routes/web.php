@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,24 +25,37 @@ Route::post('posts/{post}/like', [\App\Http\Controllers\BlogController::class, '
 
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
-Route::get('authors/{author:username}', function (\App\Models\User $author) {
-    return view('posts.posts',[
-        'posts' => $author->posts,
-        'categories' => Category::all()
-    ]);
-})->name('authors');
 
-Route::post('posts/{post:slug}/comment', [PostCommentsController::class, 'store']);
+Route::post('posts/{post}/comment', [PostCommentsController::class, 'store'])->name('post-comments.store');
 
 
 Route::get('admin/dashboard', [\App\Http\Controllers\Backend\BackendAdminController::class, 'index'])->name('admin.dashboard');
 Route::get('admin/posts/create', [\App\Http\Controllers\Backend\PostController::class, 'create'])->name('admin.posts.create');
 Route::post('admin/posts/', [\App\Http\Controllers\Backend\PostController::class, 'store'])->name('admin.posts.store');
-Route::get('admin/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('admin.posts.edit');
-Route::delete('admin/posts/{post:slug}/delete', [PostController::class, 'destroy'])->name('admin.posts.destroy');
+Route::get('admin/posts/{post}/edit', [\App\Http\Controllers\Backend\PostController::class, 'edit'])->name('admin.posts.edit');
+Route::put('admin/posts/{post}/update', [\App\Http\Controllers\Backend\PostController::class, 'update'])->name('admin.posts.update');
+Route::delete('admin/posts/{post}/delete', [\App\Http\Controllers\Backend\PostController::class, 'destroy'])->name('admin.posts.destroy');
+Route::delete('admin/posts/{post:}/force-destroy', [\App\Http\Controllers\Backend\PostController::class, 'forceDestroy'])->name('admin.posts.force-destroy');
+Route::put('admin/posts/{post}/restore', [\App\Http\Controllers\Backend\PostController::class, 'restore'])->name('admin.posts.restore');
+
 Route::get('admin/categories/', [\App\Http\Controllers\Backend\CategoryController::class, 'index'])->name('admin.category.index');
+Route::get('admin/categories/create', [\App\Http\Controllers\Backend\CategoryController::class, 'create'])->name('admin.category.create');
 Route::post('admin/categories/', [\App\Http\Controllers\Backend\CategoryController::class, 'store'])->name('admin.category.store');
+Route::get('admin/categories/edit/{category}/', [\App\Http\Controllers\Backend\CategoryController::class, 'create'])->name('admin.category.edit');
+Route::put('admin/categories/{category}', [\App\Http\Controllers\Backend\CategoryController::class, 'update'])->name('admin.category.update');
+Route::delete('admin/categories/{category}/delete', [\App\Http\Controllers\Backend\CategoryController::class, 'store'])->name('admin.category.delete');
+
 Route::get('admin/users/', [\App\Http\Controllers\Backend\UserController::class, 'index'])->name('admin.user.index');
+Route::get('admin/users/create', [\App\Http\Controllers\Backend\UserController::class, 'create'])->name('admin.user.create');
+Route::post('admin/users/store', [\App\Http\Controllers\Backend\UserController::class, 'create'])->name('admin.user.store');
+Route::get('admin/users/edit/{user}', [\App\Http\Controllers\Backend\UserController::class, 'create'])->name('admin.user.edit');
+Route::put('admin/users/update/{user}', [\App\Http\Controllers\Backend\UserController::class, 'create'])->name('admin.user.update');
+Route::get('admin/users/confirm/{user}', [\App\Http\Controllers\Backend\UserController::class, 'confirm'])->name('admin.user.confirm');
+Route::delete('admin/users/destroy/{user}', [\App\Http\Controllers\Backend\UserController::class, 'confirm'])->name('admin.users.destroy');
+
+
+Route::get('admin/comments', [\App\Http\Controllers\Backend\PostCommentsController::class, 'index'])->name('admin.comments.index');
+Route::delete('admin/comments/{comment}/delete', [\App\Http\Controllers\Backend\PostCommentsController::class, 'destroy'])->name('admin.comments.delete');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

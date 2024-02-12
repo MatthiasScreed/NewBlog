@@ -40,13 +40,10 @@ class Post extends Model
 
     public function setPublishedAtAttribute($value)
     {
-        $this->attributes['published_at'] = $value ?: NULL;
+        $this->attributes['published_at'] = $value ?: null;
     }
 
-    public function getDateAttribute($value)
-    {
-        return is_null($this->published_at) ? '' : $this->published_at->diffForHumans();
-    }
+
 
     public function comments()
     {
@@ -64,8 +61,10 @@ class Post extends Model
     }
 
 
-
-
+    public function getDateAttribute($value)
+    {
+        return is_null($this->published_at) ? '' : $this->published_at->diffForHumans();
+    }
 
     public function getBodyHtmlAttribute($value)
     {
@@ -87,14 +86,19 @@ class Post extends Model
     public function publicationLabel()
     {
         if ( ! $this->published_at) {
-            return '<span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800">Draft</span>';
+            return "<span class=\"inline-flex items-center rounded-md bg-yellow-200 px-2 py-1 text-xs font-medium text-yellow-800\">Draft</span>";
         }
-        elseif ($this->published_at && $this->published_at->isFuture()) {
-            return '<span class="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700">Schedule</span>';
+        elseif ($this->published_at instanceof Carbon && $this->published_at->isFuture()) {
+            return "<span class=\"inline-flex items-center rounded-md bg-blue-200 px-2 py-1 text-xs font-medium text-blue-700\">Schedule</span>";
         }
         else {
-            return '<span class="inline-flex items-center rounded-md bg-green-100 px-2 py-1 text-xs font-medium text-green-700">Published</span>';
+            return "<span class=\"inline-flex items-center rounded-md bg-green-200 px-2 py-1 text-xs font-medium text-green-700\">Published</span>";
         }
+    }
+
+    public function scopeLatestFirst($query)
+    {
+        return $query->orderBy('published_at', 'desc');
     }
 
     public function scopePopular($query)
@@ -116,6 +120,4 @@ class Post extends Model
     {
         return $query->whereNull("published_at");
     }
-
-
 }

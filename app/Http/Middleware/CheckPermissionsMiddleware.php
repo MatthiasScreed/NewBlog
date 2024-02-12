@@ -8,17 +8,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CheckPermissionsMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
+
     public function handle(Request $request, Closure $next): Response
     {
-//       dd($request->route()->getActionName());
+//       $response = $next($request);
         if(!check_user_permissions($request)) {
            abort(403, "Forbidden access!");
        }
+//dd($request);
         return $next($request);
     }
 }

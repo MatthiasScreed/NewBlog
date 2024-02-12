@@ -8,7 +8,7 @@ use Intervention\Image\Facades\Image;
 
 class MediaStorage
 {
-    public function execute($request, Post $post,string $filePath,int $width, int $height):void
+    public function execute($request, Post $post,string $filePath):void
     {
         $image           = $request;
         $filename        = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
@@ -17,7 +17,7 @@ class MediaStorage
         if(!file_exists($path)) {
             mkdir($path);
         }
-        $img->resize($width, $height)->save(storage_path('app/public/'.$filePath.$filename), 60);
+        $img->save(storage_path('app/public/'.$filePath.$filename), 60);
         $post->thumbnail = $filename;
     }
 }

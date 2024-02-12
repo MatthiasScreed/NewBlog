@@ -14,6 +14,11 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('categories.create');
+    }
+
     public function store(Request $request)
     {
         // Validation des données du formulaire

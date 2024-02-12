@@ -21,11 +21,24 @@ class StorePostRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'title' => 'required|min:5|max:255',
             'slug' => ['required', 'max:255','unique:posts,slug'],
+            'excerpt' => 'required',
+            'body' => 'required',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category_id' => 'required',
+            'published_at' => 'nullable|date',
         ];
+
+//        dd($this->route('post'));
+        switch ($this->method()) {
+            case 'PUT':
+            case 'PATCH':
+                $rules['slug'] = 'required|unique:posts,slug,'.$this->route('post');
+                break;
+        }
+
+        return $rules;
     }
 }

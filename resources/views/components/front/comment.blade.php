@@ -1,7 +1,7 @@
 @props(['comment'])
 <article {{ $attributes->class(['flex p-6 border border-gray-200 rounded-xl space-x-4']) }}>
     <div class="flex-shrink-0">
-        <img src="https://i.pravatar.cc/60?u={{ $comment->id }}"
+        <img src="{{ Auth::user()->gravatar() }}"
              alt=""
              width="60"
              height="60"
@@ -17,7 +17,7 @@
 
         </header>
         <p>
-            {{ $comment->body }}
+            {!! $comment->body !!}
         </p>
     </div>
 </article>

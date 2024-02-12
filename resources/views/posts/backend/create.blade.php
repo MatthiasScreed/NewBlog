@@ -7,50 +7,13 @@
 
     <div class="py-12">
         <div class="flex max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @role(['admin', 'editor'])
-            <div class="w-2/5 bg-white mr-4 shadow-sm sm:rounded-lg sm:px-6 lg:px-8 ">
-                <nav class="flex flex-1 mt-4">
-                    <ul class="flex flex-1 flex-col gap-y-7">
-                        <li>
-                            <a href="{{ route('admin.dashboard') }}"
-                               class="flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
-                                <i class="fa-solid fa-house"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.posts.create') }}"
-                               class="flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
-                                <i class="fa-solid fa-newspaper"></i>
-                                <span>Créer un article</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.category.index') }}"
-                               class="flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
-                                <i class="fa-solid fa-folder-tree"></i>
-                                <span>Categories</span>
-                            </a>
-                        </li>
-                        @role('admin')
-                        <li>
-                            <a href="{{route('admin.user.index')}}"
-                               class="flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
-                                <i class="fa-solid fa-users"></i>
-                                <span>Users</span>
-                            </a>
-                        </li>
-                        @endrole
-                    </ul>
-                </nav>
-            </div>
-            @endrole
+           <x-backend.side-navbar/>
 
-            <div class="w-3/5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="w-3/5 mt-6 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <form
-                          action="/admin/posts"
-                          method="post"
+                          action="{{ route('admin.posts.store') }}"
+                          method="POST"
                           enctype="multipart/form-data">
                         @csrf
 
@@ -73,10 +36,16 @@
 
                                 <x-form.error name="category" />
                         </x-form.field>
-
-
-
-                        <x-form.button>Publish</x-form.button>
+                        <x-form.field>
+                                <label for="published_at" class="block mb-2 uppercase font-bold text-xs text-gray-700">Publication date</label>
+                                <input type="date" id="datepicker" name="published_at" class="border border-gray-200 p-2 rounded">
+                        </x-form.field>
+                        <x-form.field>
+                            <div class="pull-left">
+                                <a id="draft-btn" class="btn btn-default">Save Draft</a>
+                            </div>
+                            <x-form.button>Publish</x-form.button>
+                        </x-form.field>
                     </form>
                 </div>
             </div>
@@ -92,6 +61,8 @@
 
             const titleInput = document.getElementById('title');
             const slugInput = document.getElementById('slug');
+
+
 
             titleInput.addEventListener('input', () => {
                 const title = titleInput.value;

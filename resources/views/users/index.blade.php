@@ -15,116 +15,31 @@
             </div>
 
             <div class="flex">
-                @role(['admin', 'editor'])
-                <div class="w-1/5 bg-white mr-4 shadow-sm sm:rounded-lg sm:px-6 lg:px-8 mt-6">
-                    <nav class="flex flex-1 mt-4">
-                        <ul class="flex flex-1 flex-col gap-y-7">
-                            <li>
-                                <a href="{{ route('admin.dashboard') }}"
-                                   class="flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
-                                    <i class="fa-solid fa-house"></i>
-                                    <span>Dashboard</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.posts.create') }}"
-                                   class="flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
-                                    <i class="fa-solid fa-newspaper"></i>
-                                    <span>Créer un article</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.category.index') }}"
-                                   class="flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
-                                    <i class="fa-solid fa-folder-tree"></i>
-                                    <span>Categories</span>
-                                </a>
-                            </li>
-                            @role('admin')
-                            <li>
-                                <a href="{{route('admin.user.index')}}"
-                                   class="flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
-                                    <i class="fa-solid fa-users"></i>
-                                    <span>Users</span>
-                                </a>
-                            </li>
-                            @endrole
-                        </ul>
-                    </nav>
+                <x-backend.side-navbar/>
+                @role(['superadministrator', 'administrator'])
+                <div class="w-4/5 mt-6 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8">
+                    <div class="sm:flex sm:items-center py-6">
+                        <div class="sm:flex-auto">
+                            <h2 class="mt-4">Les users en DB</h2>
+                        </div>
+                        <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                            <a href="{{ route('admin.user.create') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Créer un Utilisateur</a>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        @if (!$users->count())
+                            <div class="rounded-md bg-yellow-50 p-4">
+                                <div class="flex">
+                                    <p class="text-sm font-medium text-yellow-800">No record found</p>
+                                </div>
+                            </div>
+                        @else
+                            @include('users.table')
+                        @endif
+                    </div>
                 </div>
-                @endrole
-                @role(['admin', 'editor'])
-                <div class="mt-6 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8">
-                    <h2 class="mt-4">Les users en DB</h2>
-                    <table class="w-full whitespace-nowrap text-left">
-                        <colgroup>
-                            <col class="w-full sm:w-2/12">
-                            <col class="lg:w-4/12">
-                            <col class="lg:w-2/12">
-                            <col class="lg:w-2/12">
-                            <col class="lg:w-3/12">
-                        </colgroup>
-                        <thead class="border-b border-white/10 text-sm leading-6 text-gray-900">
-                        <tr>
-                            <th scope="col" class="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">name</th>
-                            <th scope="col" class="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">email</th>
-                            <th scope="col" class="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">Role</th>
-                            <th scope="col" class="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody class="divide-y divide-white/5">
-                        @foreach($users as $user)
-                            <tr>
-                                <td class="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
-                                    <div class="truncate text-sm font-medium leading-6">{{ $user->name }}</div>
-                                </td>
-                                <td  class="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20">
-                                    <div class="truncate text-sm font-medium leading-6">{{ $user->email }}</div>
-                                </td>
-                                <td  class="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20">
-                                    <div>
 
-                                    </div>
-                                </td>
-                                <td  class="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20">
-                                    <div>
-
-                                    </div>
-                                </td>
-                                <td  class="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20">
-                                    <div class="flex justify-between">
-{{--                                        @if(check_user_permissions(request(), "post@edit", $post->id))--}}
-{{--                                            <a href="{{ route('admin.posts.edit', $post) }}">--}}
-{{--                                                <i class="fa-solid fa-pen-to-square"></i>--}}
-{{--                                            </a>--}}
-{{--                                        @else--}}
-{{--                                            <a href="#" class="" style="pointer-envents:none">--}}
-{{--                                                <i class="fa-solid fa-pen-to-square"></i>--}}
-{{--                                            </a>--}}
-{{--                                        @endif--}}
-
-{{--                                        <form action="{{ route('admin.posts.destroy', $post) }}"--}}
-{{--                                              method="post">--}}
-
-{{--                                            @csrf--}}
-{{--                                            @method('DELETE')--}}
-{{--                                            @if(check_user_permissions(request(), "post@destroy", $post->id))--}}
-{{--                                                <button type="submit">--}}
-{{--                                                    <i class="fa-solid fa-trash"></i>--}}
-{{--                                                </button>--}}
-{{--                                            @else--}}
-{{--                                                <button type="button" onclick="return false;">--}}
-{{--                                                    <i class="fa-solid fa-trash"></i>--}}
-{{--                                                </button>--}}
-{{--                                            @endif--}}
-{{--                                        </form>--}}
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
                 @endrole
             </div>
         </div>

@@ -13,7 +13,7 @@ class BackendAdminController extends BackendController
     {
         $onlyTrashed = FALSE;
 
-        if(($status = $request->get('status')) && $status == 'trash')
+        if (($status = $request->get('status')) && $status == 'trash')
         {
             $posts       = Post::onlyTrashed()->with('category', 'author')->latest()->paginate($this->limit);
             $postCount   = Post::onlyTrashed()->count();
@@ -28,6 +28,11 @@ class BackendAdminController extends BackendController
         {
             $posts       = Post::scheduled()->with('category', 'author')->latest()->paginate($this->limit);
             $postCount   = Post::scheduled()->count();
+        }
+        elseif ($status == 'draft')
+        {
+            $posts       = Post::draft()->with('category', 'author')->latest()->paginate($this->limit);
+            $postCount   = Post::draft()->count();
         }
         elseif ($status == 'own')
         {

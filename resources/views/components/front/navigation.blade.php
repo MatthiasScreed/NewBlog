@@ -28,10 +28,10 @@
                          x-on:click.away="open = false"
                          class="bg-white text-gray-700 rounded shadow-lg absolute py-2 mt-1">
                             <li>
-                                <a class="block hover:bg-gray-200 whitespace-no-wrap px-4" href="route('profile.edit')">{{ __('Profile') }}</a>
+                                <a class="block hover:bg-gray-200 whitespace-no-wrap px-4" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
                             </li>
 
-                            @role(['admin', 'editor'])
+                            @role(['admin', 'superadministrator'])
                                 <x-dropdown-link :href="route('admin.posts.create')">
                                     Create post
                                 </x-dropdown-link>

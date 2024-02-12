@@ -1,10 +1,10 @@
 @auth
-    <form action="POST"
-          action="/posts/{{ $post->slug }}/comments"
+    <form method="POST"
+          action="{{ route('post-comments.store',$post) }}"
           class="border border-gray-200 p-6 rounded-xl">
         @csrf
         <header class="flex items-center">
-            <img src="https://i.pravatar.cc/60?u={{ auth()->id() }}"
+            <img src="{{ Auth::user()->gravatar() }}"
                  alt=""
                  width="40"
                  height="40"

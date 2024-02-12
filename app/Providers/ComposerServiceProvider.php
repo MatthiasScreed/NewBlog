@@ -21,7 +21,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->composer('posts.posts', function($view){
-            $popularPosts = Post::popular()->take(4)->get();
+            $popularPosts = Post::popular()->published()->take(4)->get();
             return $view->with('popularPosts',$popularPosts);
         });
     }

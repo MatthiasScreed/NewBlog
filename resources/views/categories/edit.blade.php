@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="flex max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @role(['admin', 'editor'])
+            @role(['superadministrator','admin'])
             <div class="w-2/5 bg-white mr-4 shadow-sm sm:rounded-lg sm:px-6 lg:px-8 ">
                 <nav class="flex flex-1 mt-4">
                     <ul class="flex flex-1 flex-col gap-y-7">
@@ -54,8 +54,8 @@
                             enctype="multipart/form-data">
                         @csrf
 
-                        <x-form.input name="name"  value="{{ $category->name }}" required />
-                        <x-form.input name="slug"  value="{{ $category->slug }}" required />
+                        <x-form.input name="name" value="{{ $category ? $category->name : '' }}" placeholder="Category Name" required />
+                        <x-form.input name="slug" value="{{ $category ? $category->slug : '' }}" placeholder="Category Slug"  required />
 
                         <x-form.button>Publish</x-form.button>
                     </form>

@@ -13,9 +13,12 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://kit.fontawesome.com/110870c8d6.js" crossorigin="anonymous"></script>
     <!-- Scripts -->
+    @if(isset($headScripts))
+        {{ $headScripts }}
+    @endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased m-0">
     <div class="min-h-screen bg-gray-100">
         <x-front.navigation/>
         <!-- Page Heading -->
@@ -50,7 +53,7 @@
                                      alt="mail-svgrepo-com.svg" class="h-5">
                             </label>
                             <div>
-                                <input name="email" id="email" type="text" placeholder="Your email address" class="lg:border-transparent py-2 lg:py-0 pl-4 focus:border-transparent focus:ring-0">
+                                <input name="email" id="email" type="text" placeholder="Your email address" class="bg-transparent lg:border-transparent py-2 lg:py-0 pl-4 focus:border-transparent focus:ring-0">
                                @error('email')
                                     <span class="text-xs text-red-500">{{ $message }}</span>
                                 @enderror

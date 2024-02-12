@@ -11,7 +11,12 @@ class DestroyUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return !($this->route('users') == config('cms.default_user_id') || $this->route('users') == auth()->user()->id);
+    }
+
+    public function forbiddenResponse()
+    {
+        return redirect()->back()->with('error-message', 'Tu ne peux pas suprimmer l\'utilisateur par défaut ou toi-même');
     }
 
     /**
