@@ -79,9 +79,9 @@ class User extends Authenticatable implements LaratrustUser
     public function getRedirectRoute()
     {
         if($this->hasRole(['superadministrator', 'administrator'])){
-            return 'admin/dashboard';
-        }elseif ($this->hasRole('user')){
-            return 'dashboard';
+            return route('admin.dashboard');
+        }else {
+            return route('dashboard');
         }
     }
 }

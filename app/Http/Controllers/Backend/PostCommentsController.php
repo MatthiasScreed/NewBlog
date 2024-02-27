@@ -10,7 +10,7 @@ class PostCommentsController extends Controller
 {
     public function index()
     {
-        $comments = Comment::all();
+        $comments = Comment::with(['post', 'author'])->get();;
         return view('comments.index',compact('comments'));
     }
 

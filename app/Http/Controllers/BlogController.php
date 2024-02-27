@@ -16,7 +16,14 @@ class BlogController extends Controller
     public function index()
     {
         return view('posts.posts', [
-            'posts' => Post::latestFirst()->published()->filter(\request(['search', 'category', 'author']))->paginate(5)->withQueryString(),
+            'posts' => Post::latestFirst()
+                           ->published()
+                           ->with(['likes', 'category', 'author'])
+                           ->withCount('likes')
+                           ->filter(\request(['search', 'category', 'author']))
+                           ->paginate(5)
+                           ->withQueryString(),
+
             'categories' => \App\Models\Category::all(),
         ]);
     }

@@ -16,6 +16,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "modern-normalize": "^2.0.0",
         "tinymce": "^6.8.2"
     }
 }

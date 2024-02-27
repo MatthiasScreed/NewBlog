@@ -46,3 +46,14 @@ function something()
 {
     // ..
 }
+
+function login($user = null)
+{
+    $user = $user ?? \App\Models\User::factory()->create();
+
+    \Illuminate\Support\Facades\Artisan::call('db:seed');
+
+    $user->addRole('superadministrator');
+
+    return test()->actingAs($user);
+}

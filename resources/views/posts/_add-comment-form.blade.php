@@ -1,6 +1,6 @@
 @auth
     <form method="POST"
-          action="{{ route('post-comments.store',$post) }}"
+          action="{{ route('post-comments.store', $post) }}"
           class="border border-gray-200 p-6 rounded-xl">
         @csrf
         <header class="flex items-center">
@@ -20,7 +20,7 @@
                                   placeholder="Quick, thing of something to say"
                                   required></textarea>
             @error('body')
-            <span class="text-xs text-red-500">{{ $message }}</span>
+                <span class="text-xs text-red-500">{{ $message }}</span>
             @enderror
         </div>
 

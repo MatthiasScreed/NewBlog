@@ -3,12 +3,11 @@
             <aside class="sm:p-8 md:space-y-4 lg:w-2/5">
             <!-- introduction -->
                 <div>
-                    <h1 class="mt-0 mb-2 text-5xl font-bold leading-tight">Matthias Screed</h1>
-                    <div class="mb-6 text-xl">Dev Designer</div>
+                    <h1 class="mt-0 mb-2 text-5xl font-extrabold leading-tight">Matthias Screed</h1>
+                    <div id='output' class="flex mb-6 text-xl font-semibold"></div>
                     <p class="text-lg max-w-prose">
-                        Hello welcome I'm web Dev, Designer,
-                        base in paris is a blog about my creation and discovery
-                        en various topic
+                        I am a <span class="font-medium">web developer / graphic designer,</span> locate in the Paris area.
+                        This is my creative blog where I publish my different creations and discovery on various topics
                     </p>
                 </div>
 
@@ -59,4 +58,118 @@
                 </div>
             </main>
         </div>
+    <x-slot:scripts>
+        <script>
+            ///////////////////////////
+            //change the text here //////
+            let finaltexts = [["Web_developer"], ["Graphic_designer"]];
+            let finaltextIndex = 0;
+            let currentWordIndex = 0;
+            let finaltext = finaltexts[finaltextIndex][currentWordIndex];
+            let currentWordDisplayTime = 0;
+            const MINIMUM_DISPLAY_TIME = 15000; // 15 seconds
+            const ANIMATION_INTERVAL = 10000; // 10 seconds
+
+            //////////////////////////
+
+
+            // declare all characters
+            const characters =
+                "!#$%&'()*+,-./:;<=>?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+
+            iterations = finaltext.length + 20;
+
+            function randomstr() {
+                let n = Math.random();
+                n = n * characters.length;
+                n = Math.floor(n);
+                let out = characters[n];
+                return out;
+            }
+
+            let text = [];
+            for (let i = 0; i < finaltext.length; i++) {
+                let t = [];
+                text.push(t);
+            }
+
+            for (let i = 0; i < finaltext.length; i++) {
+                let t = text[i];
+                for (let j = 0; j < iterations - 20 * Math.random(); j++) {
+                    t.push(randomstr());
+                }
+                t.push(finaltext[i]);
+            }
+            //////////////////////////////////////////////////////////////////////////////
+            // here we have ready arrays of random characters ending in expected letter///
+            //////////////////////////////////////////////////////////////////////////////
+            let counter = 0;
+            let wordChangeCounter = 0;
+            let wordDisplayed = false;
+
+
+            function change() {
+                finaltext = finaltexts[finaltextIndex][currentWordIndex];
+                text = [];
+                for (let i = 0; i < finaltext.length; i++) {
+                    let t = [];
+                    text.push(t);
+                }
+                for (let i = 0; i < finaltext.length; i++) {
+                    let t = text[i];
+                    for (let j = 0; j < iterations - 20 * Math.random(); j++) {
+                        t.push(randomstr());
+                    }
+                    t.push(finaltext[i]);
+                }
+
+                const elemout = document.getElementById("output");
+                elemout.innerHTML = ''; // Clear the previous content
+
+                let outputlist = []; // Create an empty list to store output elements
+
+                for (let i = 0; i < finaltext.length; i++) {
+                    const outputpart = document.createElement("div");
+                    outputpart.classList.add("letters");
+                    elemout.appendChild(outputpart);
+                    outputlist.push(outputpart); // Add each output element to the list
+                }
+
+                for (let i = 0; i < finaltext.length; i++) {
+                    let ft = text[i];
+                    if (counter < ft.length) {
+                        if (ft[counter] === '&') {
+                            outputlist[i].innerHTML = '&amp;';
+                        } else if (ft[counter] === ' ') {
+                            outputlist[i].innerHTML = ' ';
+                        } else {
+                            outputlist[i].innerHTML = ft[counter];
+                        }
+                    } else {
+                        outputlist[i].innerHTML = ft[ft.length - 1];
+                    }
+                }
+                counter++;
+                currentWordDisplayTime++;
+
+                if (!wordDisplayed && currentWordDisplayTime * 100 >= MINIMUM_DISPLAY_TIME) {
+                    wordDisplayed = true;
+                }
+
+                if (wordDisplayed && currentWordDisplayTime * 100 >= ANIMATION_INTERVAL) {
+                    currentWordDisplayTime = 0;
+                    counter = 0;
+                    wordDisplayed = false;
+                    currentWordIndex = (currentWordIndex + 1) % finaltexts[finaltextIndex].length;
+                    if (currentWordIndex === 0) {
+                        finaltextIndex = (finaltextIndex + 1) % finaltexts.length;
+                    }
+                }
+            }
+
+            const inst = setInterval(change, 100);
+
+        </script>
+    </x-slot:scripts>
 </x-front.layout>

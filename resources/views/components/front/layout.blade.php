@@ -7,11 +7,22 @@
 
     <title>{{ config('app.name', 'R.A.D') }}</title>
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://kit.fontawesome.com/110870c8d6.js" crossorigin="anonymous"></script>
+
     <!-- Scripts -->
     @if(isset($headScripts))
         {{ $headScripts }}
@@ -36,9 +47,9 @@
         </main>
 
         <footer id="newsletter" class="py-16 px-10 mt-16 text-center bg-white">
-            <img src="/img/thomas-mahon-hex-queenfetoos.jpg"
+            <img src="{{asset('test_Logo.png')}}"
                  alt="thomas-mahon-hex-queenfetoos.jpg" class="h-28 w-auto mx-auto mb-6 rounded-full">
-            <h5 class="tex-3xl">Restons en contact avec les dernières publications</h5>
+            <h5 class="tex-3xl">Stay in touch with the latest publications</h5>
             <p class="text-sm mt-3">Promise to keep the inbox clean. No bugs.</p>
 
             <div class="mt-10">

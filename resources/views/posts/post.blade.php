@@ -4,7 +4,7 @@
             <div>
                 <h1 class="mt-0 mb-6 text-5xl font-bold leading-tight">{{ $post->title }}</h1>
                 <div class="flex items-center mb-2 space-x-4">
-                    <img src="/img/thomas-mahon-hex-queenfetoos.jpg" alt="" class="w-10 h-10 rounded-full">
+                    <img src="{{ asset('monkey_logo.svg') }}" alt="" class="w-10 h-10 rounded-full">
                     <span>.</span>
                     <p class="text-lg text-slate-500">{{ $post->author->name  }}</p>
                     <span>.</span>

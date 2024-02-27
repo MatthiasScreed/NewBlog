@@ -1,9 +1,10 @@
 <?php
 
-it('has posts page', function () {
+it('has Home page', function () {
     $response = $this->get('/');
 
-    $response->assertSee('');
+    $response->assertSee('Matthias Screed');
+//    $response->assertSee('Hello welcome I\'m web Dev, Designer, base in paris is a blog about my creation and discovery en various topic');
 
     $posts = \App\Models\Post::all();
     $categories = \App\Models\Category::all();
@@ -13,7 +14,7 @@ it('has posts page', function () {
     }else {
         foreach ($posts as $post) {
             $response->assertSee($post->title);
-            $response->assertSee($post->body);
+
         }
     }
 
@@ -25,3 +26,14 @@ it('has posts page', function () {
 
     $response->assertStatus(200);
 });
+
+it('has Post page', function(){
+    $posts = \App\Models\Post::factory()->count(6)->create();
+
+    foreach ($posts as $post) {
+        $response = $this->get('posts/'. $post->slug .'/');
+        $response->assertSee($post->body);
+    }
+});
+
+

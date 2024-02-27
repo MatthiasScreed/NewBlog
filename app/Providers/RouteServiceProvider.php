@@ -38,7 +38,7 @@ class RouteServiceProvider extends ServiceProvider
     public static function getHomePath(): string
     {
         if (Auth::check()) {
-            if (Auth::user()->hasRole('superadministrator,admin')) {
+            if (Auth::user()->hasRole(['superadministrator', 'administrator'])) {
                 return 'admin/dashboard';
             } else {
                 return '/dashboard';
