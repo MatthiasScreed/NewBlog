@@ -10,6 +10,17 @@
            <x-backend.side-navbar/>
 
             <div class="w-3/5 mt-6 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
+                @if ($errors->any())
+                    <div class="rounded-md bg-red-50 p-4 text-sm text-red-700">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="p-6 text-gray-900">
                     <form
                           action="{{ route('admin.posts.store') }}"
@@ -17,10 +28,10 @@
                           enctype="multipart/form-data">
                         @csrf
 
-                        <x-form.input name="title" required />
-                        <x-form.textaera name="body" required />
-                        <x-form.input name="thumbnail" type="file" required />
-                        <x-form.input name="slug" required />
+                        <x-form.input name="title"  />
+                        <x-form.textaera name="body"  />
+                        <x-form.input name="thumbnail" type="file" />
+                        <x-form.input name="slug"  />
 
                         <x-form.field>
                             <x-form.label name="category"/>
@@ -38,7 +49,7 @@
                         </x-form.field>
                         <x-form.field>
                                 <label for="published_at" class="block mb-2 uppercase font-bold text-xs text-gray-700">Publication date</label>
-                                <input type="date" id="datepicker" name="published_at" class="border border-gray-200 p-2 rounded">
+                                <input type="date" id="published_at" name="published_at" class="border border-gray-200 p-2 rounded">
                         </x-form.field>
                         <x-form.field>
                             <div class="pull-left">

@@ -26,7 +26,7 @@ class PostController extends BackendController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         $post = new Post();
 
@@ -60,7 +60,7 @@ class PostController extends BackendController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
 
         if ($request->thumbnail) {

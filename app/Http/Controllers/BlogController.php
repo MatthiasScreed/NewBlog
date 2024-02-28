@@ -16,7 +16,7 @@ class BlogController extends Controller
     public function index()
     {
         return view('posts.posts', [
-            'posts' => Post::latestFirst()
+            'posts' => Post::latest()
                            ->published()
                            ->with(['likes', 'category', 'author'])
                            ->withCount('likes')

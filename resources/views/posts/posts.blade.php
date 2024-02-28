@@ -6,8 +6,7 @@
                     <h1 class="mt-0 mb-2 text-5xl font-extrabold leading-tight">Matthias Screed</h1>
                     <div id='output' class="flex mb-6 text-xl font-semibold"></div>
                     <p class="text-lg max-w-prose">
-                        I am a <span class="font-medium">web developer / graphic designer,</span> locate in the Paris area.
-                        This is my creative blog where I publish my different creations and discovery on various topics
+                        I am a <span cl>web developer and graphic designer</span> located in the Paris area. This is my creative blog where I publish my various creations and discoveries on various topics.
                     </p>
                 </div>
 
@@ -19,23 +18,20 @@
                         @endforeach
                     </div>
 
+                    @if($popularPosts->count())
+                        <div class="mt-12">
+                            <h2 class="mb-8 text-4xl font-bold leading-tight">Popular Post</h2>
+                            <!--Card-->
+                            <div class="space-y-4">
 
-
-                    <div class="mt-12">
-                        <h2 class="mb-8 text-4xl font-bold leading-tight">Popular Post</h2>
-
-                        <!--Card-->
-                        <div class="space-y-4">
-                            @if($popularPosts->count())
-                                @foreach($popularPosts as $popPost)
-                                    <x-front.min-card url="{{ route('post.show', $popPost->slug) }}" image="img/thomas-mahon-hex-tutorial.jpg" image_alt="thomas-mahon-hex-tutorial.jpg" title="{{  $popPost->title }}"/>
-                                @endforeach
-                                    @else
-                                <p class="text-center">No posts yet. Please check back later.</p>
-                            @endif
-
+                                    @foreach($popularPosts as $popPost)
+                                        <x-front.min-card url="{{ route('post.show', $popPost->slug) }}" image="{{ $popPost->thumbnail }}" image_alt="{{  $popPost->title }}" title="{{  $popPost->title }}"/>
+                                    @endforeach
+                                        @else
+                                    <p class="text-center">No posts yet. Please check back later.</p>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </aside>
 

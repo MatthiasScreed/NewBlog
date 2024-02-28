@@ -30,7 +30,7 @@
                 <div>
                     <img src="{{ asset('storage/images/'. $post->thumbnail) }}"
                          alt="{{ $post->thumbnail }}"
-                         class="h-20 w-20 border bg-white p-1">
+                         class="object-none h-20 w-20 border bg-white p-1">
                 </div>
             </td>
             <td  class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

@@ -18,7 +18,7 @@
                                   cols="30"
                                   rows="10"
                                   placeholder="Quick, thing of something to say"
-                                  required></textarea>
+                                  ></textarea>
             @error('body')
                 <span class="text-xs text-red-500">{{ $message }}</span>
             @enderror
