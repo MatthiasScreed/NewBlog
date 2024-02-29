@@ -1,3 +1,3 @@
 <img src="{{asset('logo_matthias.svg')}}"
      alt="logo_matthias"
-     srcset="">
+     class="w-full h-8">
