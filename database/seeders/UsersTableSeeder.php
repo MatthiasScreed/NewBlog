@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -44,5 +45,10 @@ class UsersTableSeeder extends Seeder
                 'bio' => $faker->text(rand(250, 300))
             ],
         ]);
+
+
+        $user = User::find(1);
+        $user->addRole('superadministrator');
+
     }
 }
