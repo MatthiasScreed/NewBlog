@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -19,23 +20,8 @@ class CategoryController extends Controller
         return view('categories.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        // Validation des données du formulaire
-        $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('categories'), // Assure que le nom de la catégorie est unique dans la table des catégories
-            ],
-            'slug' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('categories'),
-            ]
-        ]);
 
             // Création de la catégorie
             $category = Category::create([
