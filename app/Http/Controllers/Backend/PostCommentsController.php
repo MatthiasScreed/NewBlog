@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
-class PostCommentsController extends Controller
+class PostCommentsController extends BackendController
 {
     public function index()
     {

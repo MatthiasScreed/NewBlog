@@ -10,7 +10,7 @@ use App\Models\User;
 
 //use App\Models\Category;
 
-class UserController extends Controller
+class UserController extends BackendController
 {
     public function index()
     {

@@ -49,8 +49,8 @@
             <div class="w-3/5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <form
-                            action="/admin/categories"
-                            method="post"
+                            action="{{ route('admin.category.store') }}"
+                            method="POST"
                             enctype="multipart/form-data">
                         @csrf
 

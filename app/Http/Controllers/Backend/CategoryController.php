@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+
 use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 
-class CategoryController extends Controller
+class CategoryController extends BackendController
 {
     public function index()
     {
@@ -30,7 +30,7 @@ class CategoryController extends Controller
             ]);
 
         // Redirection vers la vue de la catégorie ou toute autre action que vous souhaitez effectuer après la création
-        return redirect()->route('categories.index')->with('success', 'Category created successfully!');
+        return redirect()->route('admin.category.index')->with('success', 'Category created successfully!');
 
     }
 
@@ -59,7 +59,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
+        return redirect()->route('admin.category.index')->with('success', 'Category deleted successfully!');
     }
 
 }
