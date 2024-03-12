@@ -41,7 +41,7 @@ Route::put('admin/posts/{post}/restore', [\App\Http\Controllers\Backend\PostCont
 
 Route::get('admin/categories/', [\App\Http\Controllers\Backend\CategoryController::class, 'index'])->name('admin.category.index')->middleware(['role:superadministrator|administrator']);
 Route::get('admin/categories/create', [\App\Http\Controllers\Backend\CategoryController::class, 'create'])->name('admin.category.create')->middleware(['role:superadministrator|administrator']);
-Route::post('admin/categories/', [\App\Http\Controllers\Backend\CategoryController::class, 'store'])->name('admin.category.store');
+Route::post('admin/categories/', [\App\Http\Controllers\Backend\CategoryController::class, 'store'])->name('admin.category.store')->middleware(['role:superadministrator|administrator']);
 Route::get('admin/categories/edit/{category}/', [\App\Http\Controllers\Backend\CategoryController::class, 'edit'])->name('admin.category.edit')->middleware(['role:superadministrator|administrator']);
 Route::put('admin/categories/{category}', [\App\Http\Controllers\Backend\CategoryController::class, 'update'])->name('admin.category.update')->middleware(['role:superadministrator|administrator']);
 Route::delete('admin/categories/{category}/delete', [\App\Http\Controllers\Backend\CategoryController::class, 'destroy'])->name('admin.category.delete')->middleware(['role:superadministrator']);

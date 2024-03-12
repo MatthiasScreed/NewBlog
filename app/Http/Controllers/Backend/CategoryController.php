@@ -41,23 +41,9 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function update(Request $request, Category $category)
+    public function update(StoreCategoryRequest $request, Category $category)
     {
         // Validation des données du formulaire
-        $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('categories'), // Assure que le nom de la catégorie est unique dans la table des catégories
-            ],
-            'slug' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('categories'),
-            ]
-        ]);
 
         // Mise à jour de la catégorie
         $category->update([
@@ -67,6 +53,13 @@ class CategoryController extends Controller
 
         // Redirection vers la vue de la catégorie ou toute autre action que vous souhaitez effectuer après la mise à jour
         return redirect()->route('categories.index')->with('success', 'Category updated successfully!');
+    }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
     }
 
 }
