@@ -35,7 +35,7 @@
                 </div>
             </aside>
 
-            <main class="pt-4 sm:px-8 lg:pt-8 lg:w-3/5">
+            <section class="pt-4 sm:px-8 lg:pt-8 lg:w-3/5">
                 <div class="flex flex-col items-center justify-between mb-8 space-y-4 md:space-y-0 md:flex-row">
                     <h2 class="text-4xl font-bold leading-tight">Lastest Post</h2>
                     <form action="/?{{ request()->getQueryString() }}" method="GET">
@@ -52,7 +52,7 @@
                         <p class="text-center">No posts yet. Please check back later.</p>
                     @endif
                 </div>
-            </main>
+            </section>
         </div>
     <x-slot:scripts>
         <script>

@@ -45,13 +45,13 @@
                 @endforeach
             </section>
         </aside>
-        <main>
+        <section>
             <div class="flex flex-col mb-8 space-y-8">
                 <div class="relative">
                     <img src="{{ asset('storage/images/'. $post->thumbnail) }}" alt="image_name">
                 </div>
             </div>
-        </main>
+        </section>
         <a href="/">Go Back</a>
     </div>
 
