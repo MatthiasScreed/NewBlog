@@ -1,12 +1,12 @@
 <x-front.layout>
-        <div class="flex flex-col p-4 space-y-4 divide-y-2 lg:space-y-0 divide-slate-200 lg:divide-x-2 lg:divide-y-0 md:flex-row lg:p-0 lg:max-w-7xl md:mx-auto">
-            <aside class="sm:p-8 md:space-y-4 md:w-2/5">
+        <div class="flex flex-col p-4 space-y-4 divide-y-2 lg:space-y-0 divide-slate-200 lg:divide-x-2 lg:divide-y-0 lg:flex-row lg:p-0 lg:max-w-7xl lg:mx-auto">
+            <aside class="sm:p-8 md:space-y-4 lg:w-2/5">
             <!-- introduction -->
                 <div>
-                    <h1 class="mt-0 mb-2 text-5xl font-extrabold leading-tight text-center md:text-left">Matthias Screed</h1>
-                    <div id='output' class="flex mb-6 text-xl font-semibold text-center md:text-left"></div>
-                    <p class="text-lg max-w-prose text-center md:text-left">
-                        I am a <span cl>web developer and graphic designer</span> located in the Paris area. This is my creative blog where I publish my various creations and discoveries on various topics.
+                    <h1 class="mt-0 mb-2 text-5xl font-extrabold leading-tight">Matthias Screed</h1>
+                    <div id='output' class="flex mb-6 text-xl font-semibold"></div>
+                    <p class="text-lg max-w-prose">
+                        I am a <span class="font-bold">web developer and graphic designer</span> located in the Paris area. This is my creative blog where I publish my various creations and discoveries on various topics.
                     </p>
                 </div>
 
@@ -35,7 +35,7 @@
                 </div>
             </aside>
 
-            <main class="pt-4 sm:px-8 lg:pt-8 md:w-3/5">
+            <main class="pt-4 sm:px-8 lg:pt-8 lg:w-3/5">
                 <div class="flex flex-col items-center justify-between mb-8 space-y-4 md:space-y-0 md:flex-row">
                     <h2 class="text-4xl font-bold leading-tight">Lastest Post</h2>
                     <form action="/?{{ request()->getQueryString() }}" method="GET">

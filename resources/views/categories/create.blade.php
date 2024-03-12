@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="flex max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @role(['superadministrator','admin'])
+            @role(['superadministrator','administrator'])
             <div class="w-2/5 bg-white mr-4 shadow-sm sm:rounded-lg sm:px-6 lg:px-8 ">
                 <nav class="flex flex-1 mt-4">
                     <ul class="flex flex-1 flex-col gap-y-7">
@@ -32,7 +32,7 @@
                                 <span>Categories</span>
                             </a>
                         </li>
-                        @role('admin')
+                        @role('superadministrator')
                         <li>
                             <a href="{{route('admin.user.index')}}"
                                class="flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
