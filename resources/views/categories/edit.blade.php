@@ -70,13 +70,13 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 function generateSlug(name) {
-                    return title.toLowerCase().replace(/\s+/g, '-');
+                    return name.toLowerCase().replace(/\s+/g, '-');
                 }
 
                 const nameInput = document.getElementById('name');
                 const slugInput = document.getElementById('slug');
 
-                titleInput.addEventListener('input', () => {
+                nameInput.addEventListener('input', () => {
                     const name = nameInput.value;
                     const slug = generateSlug(name);
                     slugInput.value = slug;

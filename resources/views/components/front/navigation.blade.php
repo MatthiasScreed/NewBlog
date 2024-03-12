@@ -1,14 +1,14 @@
 <div class="bg-white">
     <header class="flex items-center justify-between px-4 lg:max-w-7xl lg:mx-auto">
         <a href="{{ route('home') }}" class="inline-block py-2">
-            <img src="{{  asset('logo_matthias.svg') }}" alt="Logo" class="w-full h-8">
+            <img src="{{  asset('logo_matthias.svg') }}" alt="Logo" class="w-full h-6 md:h-8">
         </a>
-        <nav class="lg:ml-8 flex items-center">
-            <a class="px-4" href="{{route('about')}}">About</a>
+        <nav class="md:ml-8 flex items-center">
+            <a class="px-4 font-medium text-sm text-gray-700 hover:text-gray-900" href="{{route('about')}}">About</a>
             <div>
                 @guest
-                    <a class="px-4" href="{{ route('login') }}">Se connecter</a>
-                    <a class="px-4" href="{{ route('register') }}">S'inscrire</a>
+                    <a class="px-4 text-sm font-medium text-gray-700 hover:text-gray-900" href="{{ route('login') }}">Sign in</a>
+                    <a class="px-4 text-sm font-medium text-gray-700 hover:text-gray-900" href="{{ route('register') }}">Sign up</a>
                  @else
                     <div
                         x-data="{ open: false}"

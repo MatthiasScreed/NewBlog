@@ -75,7 +75,7 @@
                 const nameInput = document.getElementById('name');
                 const slugInput = document.getElementById('slug');
 
-                titleInput.addEventListener('input', () => {
+                nameInput.addEventListener('input', () => {
                     const name = nameInput.value;
                     const slug = generateSlug(name);
                     slugInput.value = slug;
