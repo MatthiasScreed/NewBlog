@@ -1,6 +1,6 @@
 <x-front.layout>
     <div class="flex flex-col-reverse p-4 space-y-4 divide-y-2 divide-slate-200 lg:max-w-7xl lg:mx-auto">
-        <aside>
+        <aside id="aside-content">
             <div>
                 <h1 class="mt-0 mb-6 text-5xl font-bold leading-tight">{{ $post->title }}</h1>
                 <div class="flex items-center mb-2">
@@ -46,7 +46,7 @@
             </section>
         </aside>
 
-        <main>
+        <main id="main-content">
             <div class="flex flex-col mb-8 space-y-8">
                 <div class="relative">
                     <img src="{{ asset('storage/images/'. $post->thumbnail) }}" alt="image_name">

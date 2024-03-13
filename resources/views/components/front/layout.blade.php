@@ -75,18 +75,6 @@
     @if(isset($scripts))
         {{ $scripts }}
     @endif
-   <script>
-        async function toggleLike(postId, liked) {
-            try {
-                const response = await axios.post(`/posts/${postId}/like`, { liked });
-                // Assuming you want to update the like count or perform other actions on success
-                console.log(response.data.message);
-                // You may update the like count or other UI elements here
-                document.getElementById('like-count').innerText = response.data.likesCount;
-            } catch (error) {
-                console.error('Erreur lors de la requête Ajax :', error);
-            }
-        }
-    </script>
+
 </body>
 </html>
