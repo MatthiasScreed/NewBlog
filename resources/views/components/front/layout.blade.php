@@ -33,9 +33,9 @@
     <div class="min-h-screen bg-gray-100">
         <x-front.navigation/>
 
-        <div>
+        <main>
             {{ $slot }}
-        </div>
+        </main>
 
         <footer id="newsletter" class="py-16 px-10 mt-16 text-center bg-white">
             <img src="{{asset('test_Logo.png')}}"
