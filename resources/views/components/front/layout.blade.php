@@ -15,8 +15,6 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -27,15 +25,16 @@
     @if(isset($headScripts))
         {{ $headScripts }}
     @endif
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased m-0">
     <div class="min-h-screen bg-gray-100">
         <x-front.navigation/>
 
-        <main>
+        <div>
             {{ $slot }}
-        </main>
+        </div>
 
         <footer id="newsletter" class="py-16 px-10 mt-16 text-center bg-white">
             <img src="{{asset('test_Logo.png')}}"
