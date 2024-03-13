@@ -1,22 +1,21 @@
 <x-front.layout>
-    <main class="flex flex-col-reverse p-4 space-y-4 divide-y-2 divide-slate-200 lg:max-w-7xl lg:mx-auto">
-
+    <div class="flex flex-col-reverse p-4 space-y-4 divide-y-2 divide-slate-200 lg:max-w-7xl lg:mx-auto">
         <aside>
             <div>
                 <h1 class="mt-0 mb-6 text-5xl font-bold leading-tight">{{ $post->title }}</h1>
-                <div class="flex items-center mb-2 space-x-4">
+                <div class="flex items-center mb-2">
                     <img src="{{ asset('monkey_logo.svg') }}" alt="" class="w-10 h-10 rounded-full">
-                    <span>.</span>
-                    <p class="text-lg text-slate-500">{{ $post->author->name  }}</p>
-                    <span>.</span>
-                    <p class="text-lg text-slate-500">{{ $post->created_at->diffForHumans() }}</p>
+                    <span class="ml-2">.</span>
+                    <p class="text-lg text-slate-500 ml-2">{{ $post->author->name  }}</p>
+                    <span class="ml-2">.</span>
+                    <p class="text-lg text-slate-500 ml-2">{{ $post->created_at->diffForHumans() }}</p>
 
                         <div class="ml-auto flex items-center justify-center">
                             @guest
-                                <button>
+                                <button class="block">
                                     <i class="fa-solid fa-heart text-gray-500"></i>
                                 </button>
-                                <span class="text-xs text-gray-500" id="like-count">{{ $post->likes()->where('liked', true)->count() }}</span>
+                                <span class="text-xs text-gray-500 ml-4" id="like-count">{{ $post->likes()->where('liked', true)->count() }}</span>
                             @else
                                 @php
                                     $isLikedByCurrentUser = optional(auth()->user())->id ? $post->isLikedBy(auth()->user()) : false;
@@ -47,15 +46,15 @@
             </section>
         </aside>
 
-        <section>
+        <main>
             <div class="flex flex-col mb-8 space-y-8">
                 <div class="relative">
                     <img src="{{ asset('storage/images/'. $post->thumbnail) }}" alt="image_name">
                 </div>
             </div>
-        </section>
+        </main>
         <a href="/">Go Back</a>
-    </main>
+    </div>
 
     <x-slot name="scripts">
         <script>

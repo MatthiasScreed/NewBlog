@@ -32,7 +32,7 @@
 
     </form>
 @else
-    <p>
+    <p class="text-center">
         <a href="{{route('register')}}">S'enregistrer</a> ou <a href="{{ route('login') }}">se connecter</a> pour
         laisser un commentaire.
     </p>
