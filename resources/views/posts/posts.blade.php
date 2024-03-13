@@ -30,7 +30,7 @@
                                         <x-front.min-card url="{{ route('post.show', $popPost->slug) }}" image="{{ $popPost->thumbnail }}" image_alt="{{  $popPost->title }}" title="{{  $popPost->title }}"/>
                                     @endforeach
                                         @else
-                                    <p class="text-center">No posts yet. Please check back later.</p>
+                                    <p class="text-center mt-4">No posts yet. Please check back later.</p>
                             </div>
                         </div>
                     @endif
