@@ -1,6 +1,8 @@
 <x-front.layout>
-        <div class="flex flex-col p-4 space-y-4 divide-y-2 lg:space-y-0 divide-slate-200 lg:divide-x-2 lg:divide-y-0 lg:flex-row lg:p-0 lg:max-w-7xl lg:mx-auto">
-            <aside class="sm:p-8 md:space-y-4 lg:w-2/5">
+        <main class="flex flex-col p-4 space-y-4 divide-y-2 lg:space-y-0 divide-slate-200 lg:divide-x-2 lg:divide-y-0 lg:flex-row lg:p-0 lg:max-w-7xl lg:mx-auto">
+
+{{--            aside--}}
+            <aside id="aside" class="sm:p-8 md:space-y-4 lg:w-2/5">
             <!-- introduction -->
                 <div>
                     <h1 class="mt-0 mb-2 text-5xl font-extrabold leading-tight">Matthias Screed</h1>
@@ -35,7 +37,10 @@
                 </div>
             </aside>
 
-            <section class="pt-4 sm:px-8 lg:pt-8 lg:w-3/5">
+{{-- end Aside--}}
+
+{{--            section--}}
+            <section id="main" class="pt-4 sm:px-8 lg:pt-8 lg:w-3/5">
                 <div class="flex flex-col items-center justify-between mb-8 space-y-4 md:space-y-0 md:flex-row">
                     <h2 class="text-4xl font-bold leading-tight">Lastest Post</h2>
                     <form action="/?{{ request()->getQueryString() }}" method="GET">
@@ -53,7 +58,9 @@
                     @endif
                 </div>
             </section>
-        </div>
+{{--            endSection--}}
+        </main>
+
     <x-slot:scripts>
         <script>
             ///////////////////////////
@@ -165,7 +172,7 @@
             }
 
             const inst = setInterval(change, 100);
-
         </script>
+
     </x-slot:scripts>
 </x-front.layout>

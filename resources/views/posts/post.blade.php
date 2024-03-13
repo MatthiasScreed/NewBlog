@@ -1,5 +1,6 @@
 <x-front.layout>
-    <div class="flex flex-col-reverse p-4 space-y-4 divide-y-2 divide-slate-200 lg:max-w-7xl lg:mx-auto">
+    <main class="flex flex-col-reverse p-4 space-y-4 divide-y-2 divide-slate-200 lg:max-w-7xl lg:mx-auto">
+
         <aside>
             <div>
                 <h1 class="mt-0 mb-6 text-5xl font-bold leading-tight">{{ $post->title }}</h1>
@@ -45,6 +46,7 @@
                 @endforeach
             </section>
         </aside>
+
         <section>
             <div class="flex flex-col mb-8 space-y-8">
                 <div class="relative">
@@ -53,7 +55,7 @@
             </div>
         </section>
         <a href="/">Go Back</a>
-    </div>
+    </main>
 
     <x-slot name="scripts">
         <script>

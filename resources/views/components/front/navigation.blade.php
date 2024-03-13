@@ -1,5 +1,5 @@
-<div class="bg-white">
-    <header class="py-2 sm:py-0 flex items-center justify-between px-4 lg:max-w-7xl lg:mx-auto">
+<header class="bg-white">
+    <div class="py-2 sm:py-0 flex items-center justify-between px-4 lg:max-w-7xl lg:mx-auto">
         <a href="{{ route('home') }}" class="inline-block py-2">
             <img src="{{  asset('logo_matthias.svg') }}" alt="Logo" class="w-full h-6 md:h-8">
         </a>
@@ -100,5 +100,5 @@
                 </div>
             </div>
         </div>
-    </header>
-</div>
+    </div>
+</header>
