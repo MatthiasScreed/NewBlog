@@ -2,11 +2,18 @@
 <article {{ $attributes->class(['flex p-6 border border-gray-200 rounded-xl justify-between']) }}>
     <div class="flex space-x-4">
         <div class="flex-shrink-0">
-            <img src="{{ Auth::user()->gravatar() }}"
-                 alt=""
-                 width="60"
-                 height="60"
-                 class="rounded-xl">
+            @auth()
+                <img src="{{ Auth::user()->gravatar() }}"
+                     alt=""
+                     width="60"
+                     height="60"
+                     class="rounded-xl">
+            @endauth
+
+            @guest()
+                    <i class="fa-solid fa-user fa-3x"></i>
+                @endguest
+
         </div>
 
         <div>

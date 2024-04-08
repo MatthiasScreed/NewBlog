@@ -8,6 +8,7 @@ import 'tinymce/icons/default/icons';
 import 'tinymce/themes/silver/theme';
 import 'tinymce/models/dom/model';
 import Alpine from 'alpinejs';
+
 // import tinymce from 'tinymce';
 
 window.Alpine = Alpine;

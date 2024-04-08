@@ -23,6 +23,7 @@ Route::get('/about', [\App\Http\Controllers\BlogController::class, 'about'])->na
 Route::get('posts/{post:slug}', [\App\Http\Controllers\BlogController::class, 'show'])->name('post.show');
 Route::post('posts/{post}/like', [\App\Http\Controllers\BlogController::class, 'like']);
 
+Route::get('posts/{post:slug}/comments', [PostCommentsController::class, 'index'])->name('post-comments.all');
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
 

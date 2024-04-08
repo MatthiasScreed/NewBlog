@@ -44,6 +44,10 @@
                     <x-front.comment :comment="$comment"/>
                 @endforeach
             </section>
+
+            <section id="app" x-data="commentSection()" x-init="loadComments()">
+                
+            </section>
         </aside>
 
         <main id="main-content">
@@ -57,6 +61,7 @@
     </div>
 
     <x-slot name="scripts">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script>
             async function toggleLike(postId, liked) {
                 try {
@@ -69,6 +74,25 @@
                     console.error('Erreur lors de la requête Ajax :', error);
                 }
             }
+
+            function commentSection() {
+                return {
+                    comments: [],
+                    async loadComments() {
+                        try {
+                            const response = await axios.get(`/posts/{{ $post->slug }}/comments`);
+                            this.comments = response.data;
+                        } catch (error) {
+                            console.error('Error loading comments:', error);
+                        }
+                    }
+                }
+            }
+
+            {{--window.onload = function () {--}}
+            {{--    commentSection().loadComments();--}}
+            {{--};--}}
+
         </script>
     </x-slot>
 </x-front.layout>

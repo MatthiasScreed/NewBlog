@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class PostCommentsController extends Controller
 {
+    public function index(Post $post)
+    {
+        $comments = $post->comments();
+
+        return response()->json($comments);
+    }
     public function store(Post $post)
     {
         request()->validate([
