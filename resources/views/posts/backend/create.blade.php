@@ -29,7 +29,7 @@
                         @csrf
 
                         <x-form.input name="title"  />
-                        <x-form.textaera name="body"  />
+                        <x-form.textaera id="post_content" name="body"  />
                         <x-form.input name="thumbnail" type="file" />
                         <x-form.input name="slug"  />
 

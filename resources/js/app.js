@@ -17,7 +17,7 @@ Alpine.start();
 
 window.addEventListener('DOMContentLoaded', () => {
     tinymce.init({
-        selector: 'textarea',
+        selector: 'textarea#post_content',
 
         /* TinyMCE configuration options */
         skin: false,

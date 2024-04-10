@@ -45,9 +45,15 @@
                 @endforeach
             </section>
 
-            <section id="app" x-data="commentSection()" x-init="loadComments()">
-                
-            </section>
+{{--            <section id="app" x-data="commentSection()" x-init="loadComments()" class="mt-10 space-y-6">--}}
+{{--                <div x-show="comments.length">--}}
+{{--                    <ul class="space-y-3">--}}
+{{--                        <template x-for="comment in comments">--}}
+{{--                            <li  class="text-2xl bg-blue-600 text-red-500 py-3">HEllo</li>--}}
+{{--                        </template>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </section>--}}
         </aside>
 
         <main id="main-content">
@@ -61,7 +67,7 @@
     </div>
 
     <x-slot name="scripts">
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{{--        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>--}}
         <script>
             async function toggleLike(postId, liked) {
                 try {
@@ -77,22 +83,39 @@
 
             function commentSection() {
                 return {
-                    comments: [],
+                    comments: {},
                     async loadComments() {
                         try {
                             const response = await axios.get(`/posts/{{ $post->slug }}/comments`);
                             this.comments = response.data;
+                            console.log(this.comments);
                         } catch (error) {
                             console.error('Error loading comments:', error);
                         }
                     }
-                }
+                };
             }
 
-            {{--window.onload = function () {--}}
-            {{--    commentSection().loadComments();--}}
-            {{--};--}}
+            function submitEditForm() {
+                const editedBody = this.editedBody;
+                const commentId = {{ $comment->id }};
 
+                axios.post(`/comments/${commentId}/update`, {
+                    body: editedBody
+                })
+                    .then(response => {
+                        console.log(response.data);
+                        // Mettez à jour l'affichage du commentaire avec la réponse si nécessaire
+                    })
+                    .catch(error => {
+                        console.error('Error updating comment:', error);
+                        // Afficher un message d'erreur à l'utilisateur si nécessaire
+                    });
+            }
+
+            // window.onload = function () {
+            //     commentSection().loadComments();
+            // };
         </script>
     </x-slot>
 </x-front.layout>

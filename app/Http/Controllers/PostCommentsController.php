@@ -10,8 +10,9 @@ class PostCommentsController extends Controller
 {
     public function index(Post $post)
     {
-        $comments = $post->comments();
+        $comments = $post->comments()->get()->toJson();
 
+//        dd($comments);
         return response()->json($comments);
     }
     public function store(Post $post)
