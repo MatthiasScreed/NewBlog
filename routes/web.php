@@ -28,6 +28,7 @@ Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store
 
 
 Route::post('posts/{post}/comment', [PostCommentsController::class, 'store'])->name('post-comments.store');
+Route::put('comments/{comment}/update', [PostCommentsController::class, 'update'])->name('post-comments.update');
 Route::delete('comments/{comment}/delete', [PostCommentsController::class, 'delete'])->name('post-comments.delete');
 
 

@@ -9,7 +9,7 @@
                      class="rounded-xl">
         </div>
 
-        <form x-data="{ editing: false }" x-cloak>
+        <div x-data="{ editing: false }" x-cloak>
             <header class="mb-4 flex justify-between items-center w-full">
                 <div>
                     <h3 class="font-bold">{{ $comment->author->name }}</h3>
@@ -47,9 +47,9 @@
                     </p>
                 </div>
 
-                <form x-show="editing">
-                    <textarea>{{ $comment->body }}</textarea>
-                    <button type="submit">Submit</button>
+                <form x-show="editing" x-data="{ body : '{{ $comment->body }}'}" @submit.prevent="submitEditForm">
+                    <textarea x-model="body" name="body"></textarea>
+                    <button x-on:click="editing = false" type="submit">Submit</button>
                 </form>
             @else
                 <div>
@@ -58,4 +58,6 @@
                     </p>
                 </div>
             @endif
+        </div>
+    </div>
 </article>

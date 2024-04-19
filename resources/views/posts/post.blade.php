@@ -39,21 +39,8 @@
             </div>
             <section class="mt-10 space-y-6">
                @include('posts._add-comment-form')
-
-                @foreach($post->comments as $comment)
-                    <x-front.comment :comment="$comment"/>
-                @endforeach
+                <livewire:comments :post="$post"/>
             </section>
-
-{{--            <section id="app" x-data="commentSection()" x-init="loadComments()" class="mt-10 space-y-6">--}}
-{{--                <div x-show="comments.length">--}}
-{{--                    <ul class="space-y-3">--}}
-{{--                        <template x-for="comment in comments">--}}
-{{--                            <li  class="text-2xl bg-blue-600 text-red-500 py-3">HEllo</li>--}}
-{{--                        </template>--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            </section>--}}
         </aside>
 
         <main id="main-content">
@@ -67,7 +54,6 @@
     </div>
 
     <x-slot name="scripts">
-{{--        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>--}}
         <script>
             async function toggleLike(postId, liked) {
                 try {
@@ -81,31 +67,40 @@
                 }
             }
 
-            function commentSection() {
-                return {
-                    comments: {},
-                    async loadComments() {
-                        try {
-                            const response = await axios.get(`/posts/{{ $post->slug }}/comments`);
-                            this.comments = response.data;
-                            console.log(this.comments);
-                        } catch (error) {
-                            console.error('Error loading comments:', error);
-                        }
-                    }
-                };
-            }
+            {{--async function FetchComments() {--}}
+            {{--    try {--}}
+            {{--        const response = await fetch('{{ route('post-comments.all', $post->slug ) }}');--}}
+
+            {{--        if (!response.ok) {--}}
+            {{--            throw new Error('Failed to fetch items');--}}
+            {{--        }--}}
+
+            {{--        const comments = await response.json();--}}
+            {{--        console.log(comments);--}}
+            {{--        comments.forEach(comment => {--}}
+            {{--            const html = `<x-front.comment :comment="${JSON.stringify(comment)}"></x-front.comment>`;--}}
+
+            {{--            document.getElementById('comments-container').insertAdjacentHTML('beforeend', html);--}}
+            {{--        });--}}
+            {{--    } catch (error) {--}}
+            {{--        console.error('Error:', error);--}}
+            {{--    }--}}
+            {{--}--}}
+
 
             function submitEditForm() {
-                const editedBody = this.editedBody;
-                const commentId = {{ $comment->id }};
+                const body = document.querySelector('[name="body"]').value;
+                {{--const commentId = {{ $comment->id }};--}}
 
-                axios.post(`/comments/${commentId}/update`, {
-                    body: editedBody
-                })
+                const params = new URLSearchParams(); // Utilisation de URLSearchParams pour formater les données
+                params.append('body', this.body);
+                console.log(this.body);
+                console.log(params);
+                axios.put(`/comments/${commentId}/update`, params)
                     .then(response => {
                         console.log(response.data);
-                        // Mettez à jour l'affichage du commentaire avec la réponse si nécessaire
+
+                        // Alpine.store('editing', false);
                     })
                     .catch(error => {
                         console.error('Error updating comment:', error);
@@ -113,9 +108,7 @@
                     });
             }
 
-            // window.onload = function () {
-            //     commentSection().loadComments();
-            // };
+            // FetchComments();
         </script>
     </x-slot>
 </x-front.layout>

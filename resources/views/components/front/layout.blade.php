@@ -27,6 +27,7 @@
     @endif
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body class="font-sans antialiased m-0">
     <div class="min-h-screen bg-gray-100">
@@ -75,5 +76,6 @@
     @if(isset($scripts))
         {{ $scripts }}
     @endif
+    @livewireScripts
 </body>
 </html>

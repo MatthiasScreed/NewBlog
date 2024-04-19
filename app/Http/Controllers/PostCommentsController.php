@@ -10,9 +10,8 @@ class PostCommentsController extends Controller
 {
     public function index(Post $post)
     {
-        $comments = $post->comments()->get()->toJson();
+        $comments = $post->comments()->with('author')->get()->toJson();
 
-//        dd($comments);
         return response()->json($comments);
     }
     public function store(Post $post)
@@ -27,6 +26,19 @@ class PostCommentsController extends Controller
         ]);
 
         return back()->with('success','post Updater');
+    }
+
+    public function update(Request $request, Comment $comment)
+    {
+        $request->validate([
+            'body' => 'required'
+        ]);
+
+        $comment->update([
+            'body' => request('body'),
+        ]);
+
+        return response()->json('Comment Updated');
     }
 
     public function delete(Comment $comment)
